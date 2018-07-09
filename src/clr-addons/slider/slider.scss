@@ -5,11 +5,12 @@
  */
 
 @include exports('slider.clr-addons') {
-  .slider-action-field {
+  .slider-action-field{
     float: left;
   }
 
-  input[type='range'][orient='vertical'] {
+  input[type=range][orient=vertical]
+  {
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */
     width: 8px;
