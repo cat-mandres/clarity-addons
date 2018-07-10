@@ -4,11 +4,10 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-
-import {ClrSlider} from "@porscheinformatik/clr-addons";
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {ClarityModule} from "@clr/angular";
-import {FormsModule} from "@angular/forms";
+import { ClrSlider } from '@porscheinformatik/clr-addons';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ClarityModule } from '@clr/angular';
+import { FormsModule } from '@angular/forms';
 
 describe('SliderComponent', () => {
   let component: ClrSlider;
@@ -30,6 +29,4 @@ describe('SliderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-
 });

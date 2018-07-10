@@ -7,7 +7,8 @@
 <div class="slider">
   <h4>Value: {{_value}}</h4>
   <div class="slider-action-field input" [hidden]="!_showsLabels">
-    <input title="Minimum"
+    <input class="value-boundary"
+           title="Minimum"
            type="number"
            name="Minimum"
            [(ngModel)]="_minValue"
@@ -16,22 +17,36 @@
   </div>
 
   <!-- TODO:-->
-  <!-- .) ngValue does not seem to be working right now-->
   <!-- .) orient does not seem to get bound to the sliders' base class orientation-->
-  <!-- .) live-value-update -->
   <div class="slider-action-field">
-    <input #slider (orient)="_orientation"
-           [value]="_value"
-           (change)="valueChanged($event.target.value)"
-           [(step)]="_step" type="range"
-           [(min)]="_minValue"
-           [(max)]="_maxValue"
-           class="slider"
-           [value]="_value">
+    <div
+      [class.slider-wrapper]="_orientation == 'vertical'"
+      [class.slider-size-sm]="_size == 'sm'"
+      [class.slider-size-md]="_size == 'md'"
+      [class.slider-size-lg]="_size == 'lg'"
+      [class.slider-size-xl]="_size == 'xl'">
+      <input #slider
+             class="slider-content"
+             [class.slider-vertical]="_orientation == 'vertical'"
+             [class.slider-horizontal]="_orientation == 'horizontal'"
+             [class.slider-size-sm]="_size == 'sm'"
+             [class.slider-size-md]="_size == 'md'"
+             [class.slider-size-lg]="_size == 'lg'"
+             [class.slider-size-xl]="_size == 'xl'"
+             [(ngModel)]="_value"
+             (change)="valueChanged($event.target.value)"
+             [(step)]="_step"
+             type="range"
+             [(min)]="_minValue"
+             [(max)]="_maxValue"
+             class="slider"
+             [value]="_value">
+    </div>
   </div>
 
   <div class="slider-action-field input" [hidden]="!_showsLabels">
-    <input title="Maximum"
+    <input class="value-boundary"
+           title="Maximum"
            type="number"
            name="Maximum"
            [readonly]="![enableValueFields]"

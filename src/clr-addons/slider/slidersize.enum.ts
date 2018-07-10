@@ -5,8 +5,8 @@
  */
 
 export enum SliderSize {
-  SMALL = 0,
-  MEDIUM = 1,
-  LARGE = 2,
-  XLARGE = 3
+  small = 'sm',
+  medium = 'md',
+  large = 'lg',
+  xlarge = 'xl',
 }
