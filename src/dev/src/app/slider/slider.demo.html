@@ -3,10 +3,143 @@
   ~ This software is released under MIT license.
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
+<div>
+  <h2>Slider</h2>
 
-<h2>Slider</h2>
+  <div>
+    <h4>[Horizontal] Different Sizes:</h4>
+    <br>
+    <diV class="double-value-grid">
+      <diV>
+        Small (<code>{{this._horiSliderSize1.sliderSize}}</code>)
+      </diV>
+      <clr-slider #horiSliderSize1 [clrSliderSize]="this._sliderSize.small" [clrShowsLabels]="false"></clr-slider>
 
+      <diV>
+        Medium (<code>{{this._horiSliderSize2.sliderSize}}</code>)
+      </diV>
+      <clr-slider #horiSliderSize2 [clrSliderSize]="this._sliderSize.medium" [clrShowsLabels]="false"></clr-slider>
 
-<clr-slider>
+      <diV>
+        Large (<code>{{this._horiSliderSize3.sliderSize}}</code>)
+      </diV>
+      <clr-slider #horiSliderSize3 [clrSliderSize]="this._sliderSize.large" [clrShowsLabels]="false"></clr-slider>
 
-</clr-slider>
+      <diV>
+        X-Large (<code>{{this._horiSliderSize4.sliderSize}}</code>)
+      </diV>
+      <clr-slider #horiSliderSize4 [clrSliderSize]="this._sliderSize.xlarge" [clrShowsLabels]="false"></clr-slider>
+    </diV>
+  </div>
+
+  <hr>
+
+  <div>
+    <h4>[Vertical] Different Sizes:</h4>
+    <br>
+    <diV class="quadruple-value-grid">
+      <diV>
+        Small (<code>{{this._vertSliderSize1.sliderSize}}</code>)
+      </diV>
+      <diV>
+        Medium (<code>{{this._vertSliderSize2.sliderSize}}</code>)
+      </diV>
+      <diV>
+        Large (<code>{{this._vertSliderSize3.sliderSize}}</code>)
+      </diV>
+      <diV>
+        X-Large (<code>{{this._vertSliderSize4.sliderSize}}</code>)
+      </diV>
+
+      <clr-slider #vertSliderSize1
+                  [clrSliderSize]="this._sliderSize.small"
+                  [clrShowsLabels]="false"
+                  [clrOrientation]="this._sliderOrientation.vertical"></clr-slider>
+
+      <clr-slider #vertSliderSize2
+                  [clrSliderSize]="this._sliderSize.medium"
+                  [clrShowsLabels]="false">
+                  [clrOrientation]="this._sliderOrientation.vertical"></clr-slider>
+
+      <clr-slider #vertSliderSize3
+                  [clrSliderSize]="this._sliderSize.large"
+                  [clrShowsLabels]="false">
+                  [clrOrientation]="this._sliderOrientation.vertical"></clr-slider>
+
+      <clr-slider #vertSliderSize4
+                  [clrSliderSize]="this._sliderSize.xlarge"
+                  [clrShowsLabels]="false">
+                  [clrOrientation]="this._sliderOrientation.vertical"></clr-slider>
+    </diV>
+  </div>
+
+  <hr>
+
+  <diV>
+    <h4>En- Disable value input fields:</h4>
+    <br>
+
+    <div class="triple-value-grid">
+      <div>
+        <input type="checkbox"
+               [checked]="this._sliderValueFields1.valueFieldsAreEnabled"
+               (change)="this._sliderValueFields1.enableValueFields= $event.target.checked">
+        {{this._sliderValueFields1.valueFieldsAreEnabled?"Disable":"Enable"}}
+      </div>
+      <clr-slider #sliderValueFields1 [clrEnableValueFields]="false"></clr-slider>
+      <div>
+        Value: {{this._sliderValueFields1.value}}
+      </div>
+    </div>
+  </diV>
+
+  <hr>
+
+  <diV>
+    <h4>Show and Hide value input fields:</h4>
+    <br>
+
+    <div class="triple-value-grid">
+      <div>
+        <input type="checkbox"
+               [checked]="this._sliderShowsLabels1.showsLabels"
+               (change)="this._sliderShowsLabels1.showLabels= $event.target.checked">
+        {{this._sliderShowsLabels1.showsLabels?"Hide":"Show"}}
+      </div>
+      <clr-slider #sliderShowsLabels1 [clrShowsLabels]="false"></clr-slider>
+      <div>
+        Value: {{this._sliderShowsLabels1.value}}
+      </div>
+    </div>
+  </diV>
+
+  <hr>
+
+  <diV>
+    <h4>Miscellaneous features:</h4>
+    <br>
+
+    <clr-slider #sliderMisc1 [clrShowsLabels]="false"></clr-slider>
+
+    <br>
+    <br>
+    <div class="misc-value-grid">
+      <div>
+        Value:
+      </div>
+      <input #sliderMisc1NumberValue type="number" [value]="this._sliderMisc1.value" (change)="this._sliderMisc1.value = this._sliderMisc1NumberValue.nativeElement.value">
+      <div>
+        Maximum:
+      </div>
+      <input type="number">
+      <div>
+        Minimum:
+      </div>
+      <input type="number">
+      <div class="without-bottom-line">
+        Step:
+      </div>
+      <input type="number">
+    </div>
+  </diV>
+</div>

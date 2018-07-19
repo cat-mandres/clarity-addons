@@ -14,15 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './slider.html',
 })
 export class ClrSlider {
-  // ======================
   // ====== Children ======
-  // ======================
   @ViewChild('slider') slider: ElementRef;
   @Output('clrValueChanged') onValueChanged: EventEmitter<any> = new EventEmitter(false);
 
-  // ====================
   // ====== Events ======
-  // ====================
   valueChanged(value: number): void {
     this.onValueChanged.emit(value);
     this.value = value;
@@ -36,21 +32,17 @@ export class ClrSlider {
     this.maxValue = newMaxValue;
   }
 
-  // ====================
   // == Private Fields ==
-  // ====================
   private _value = 0;
   private _minValue = 0;
   private _maxValue = 50;
   private _step = 1;
   private _showsLabels = true;
-  private _orientation: Orientation = Orientation.vertical;
+  private _orientation: Orientation = Orientation.horizontal;
   private _size = SliderSize.medium;
   private _enableValueFields = true;
 
-  // ====================
   // ====== Getter ======
-  // ====================
   public get value(): number {
     return this._value;
   }
@@ -83,9 +75,7 @@ export class ClrSlider {
     return this._enableValueFields;
   }
 
-  // ====================
   // ====== Setter ======
-  // ====================
   @Input('clrValue')
   public set value(value: number) {
     const newvalue = Math.min(Math.max(value, this._minValue), this._maxValue);
@@ -100,6 +90,10 @@ export class ClrSlider {
 
   @Input('clrMinValue')
   public set minValue(min: number) {
+    if (!this._enableValueFields) {
+      return;
+    }
+
     if (min > this._maxValue) {
       this._minValue = this._maxValue;
       this._maxValue = min;
@@ -112,6 +106,10 @@ export class ClrSlider {
 
   @Input('clrMaxValue')
   public set maxValue(max: number) {
+    if (!this._enableValueFields) {
+      return;
+    }
+
     if (max < this._minValue) {
       this._maxValue = this._minValue;
       this._minValue = max;
@@ -142,14 +140,12 @@ export class ClrSlider {
     this._size = size;
   }
 
-  @Input('clreEableValueFields')
+  @Input('clrEnableValueFields')
   public set enableValueFields(enableValueFields: boolean) {
     this._enableValueFields = enableValueFields;
   }
 
-  // ===================
   // ====== Tools ======
-  // ===================
   private updateValue(): void {
     this.value = this._value;
   }
