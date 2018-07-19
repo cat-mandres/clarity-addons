@@ -6,7 +6,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ClrSlider } from '@porscheinformatik/clr-addons';
 import { SliderSize } from '../../../../clr-addons/slider/slidersize.enum';
-import { Orientation } from '../../../../clr-addons/slider/orientation.enum';
+import { SliderValueType } from '../../../../clr-addons/slider/slidervaluetype.enum';
 
 @Component({
   selector: 'clr-slider-demo',
@@ -15,28 +15,34 @@ import { Orientation } from '../../../../clr-addons/slider/orientation.enum';
 })
 export class SliderDemo implements OnInit {
   ngOnInit(): void {
-    this._sliderMisc1.onValueChanged.subscribe((num: Number) => {
-      this._sliderMisc1NumberValue.nativeElement.value = num;
+    this._sliderMisc1.onValueChanged.subscribe(data => {
+      if (data.valueType === SliderValueType.value) {
+        this._sliderMisc1NumberValue.nativeElement.value = data.value;
+      }
     });
   }
 
   private _sliderSize = SliderSize;
-  private _sliderOrientation = Orientation;
 
-  @ViewChild('horiSliderSize1') _horiSliderSize1: ClrSlider;
-  @ViewChild('horiSliderSize2') _horiSliderSize2: ClrSlider;
-  @ViewChild('horiSliderSize3') _horiSliderSize3: ClrSlider;
-  @ViewChild('horiSliderSize4') _horiSliderSize4: ClrSlider;
+  @ViewChild('horiSliderSize1') private _horiSliderSize1: ClrSlider;
+  @ViewChild('horiSliderSize2') private _horiSliderSize2: ClrSlider;
+  @ViewChild('horiSliderSize3') private _horiSliderSize3: ClrSlider;
+  @ViewChild('horiSliderSize4') private _horiSliderSize4: ClrSlider;
 
-  @ViewChild('vertSliderSize1') _vertSliderSize1: ClrSlider;
-  @ViewChild('vertSliderSize2') _vertSliderSize2: ClrSlider;
-  @ViewChild('vertSliderSize3') _vertSliderSize3: ClrSlider;
-  @ViewChild('vertSliderSize4') _vertSliderSize4: ClrSlider;
+  @ViewChild('sliderValueFields1') private _sliderValueFields1: ClrSlider;
 
-  @ViewChild('sliderValueFields1') _sliderValueFields1: ClrSlider;
+  @ViewChild('sliderShowsLabels1') private _sliderShowsLabels1: ClrSlider;
 
-  @ViewChild('sliderShowsLabels1') _sliderShowsLabels1: ClrSlider;
+  @ViewChild('sliderRangeSelection1') private _sliderRangeSelection1: ClrSlider;
 
-  @ViewChild('sliderMisc1') _sliderMisc1: ClrSlider;
-  @ViewChild('sliderMisc1NumberValue') _sliderMisc1NumberValue: ElementRef;
+  @ViewChild('sliderMisc1') private _sliderMisc1: ClrSlider;
+  @ViewChild('sliderMisc1NumberValue') private _sliderMisc1NumberValue: ElementRef;
+  @ViewChild('sliderMisc1NumberLowValue') private _sliderMisc1NumberLowValue: ElementRef;
+  @ViewChild('sliderMisc1NumberHighValue') private _sliderMisc1NumberHighValue: ElementRef;
+  @ViewChild('sliderMisc1MaxValue') private _sliderMisc1MaxValue: ElementRef;
+  @ViewChild('sliderMisc1MinValue') private _sliderMisc1MinValue: ElementRef;
+  @ViewChild('sliderMisc1StepValue') private _sliderMisc1StepValue: ElementRef;
+  @ViewChild('sliderMisc1MultValue') private _sliderMisc1MultValue: ElementRef;
+  @ViewChild('sliderMisc1LowValue') private _sliderMisc1LowValue: ElementRef;
+  @ViewChild('sliderMisc1HighValue') private _sliderMisc1HighValue: ElementRef;
 }

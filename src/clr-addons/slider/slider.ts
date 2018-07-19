@@ -4,24 +4,33 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Orientation } from './orientation.enum';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SliderSize } from './slidersize.enum';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SliderValueType } from './slidervaluetype.enum';
 
 @Component({
   selector: 'clr-slider',
   templateUrl: './slider.html',
 })
 export class ClrSlider {
-  // ====== Children ======
-  @ViewChild('slider') slider: ElementRef;
   @Output('clrValueChanged') onValueChanged: EventEmitter<any> = new EventEmitter(false);
 
   // ====== Events ======
-  valueChanged(value: number): void {
+  valueChanged(value): void {
     this.onValueChanged.emit(value);
-    this.value = value;
+    switch (value.valueType) {
+      case SliderValueType.value:
+        this.value = value.value;
+        break;
+      case SliderValueType.lowvalue:
+        this.highValue = value.value;
+        break;
+      case SliderValueType.highvalue:
+        this.highValue = value.value;
+        break;
+      default:
+        break;
+    }
   }
 
   onMinValueChange(newMinValue: number): void {
@@ -38,9 +47,11 @@ export class ClrSlider {
   private _maxValue = 50;
   private _step = 1;
   private _showsLabels = true;
-  private _orientation: Orientation = Orientation.horizontal;
   private _size = SliderSize.medium;
   private _enableValueFields = true;
+  private _mutliValue = false;
+  private _lowValue = this._maxValue;
+  private _highValue = this._minValue;
 
   // ====== Getter ======
   public get value(): number {
@@ -63,16 +74,24 @@ export class ClrSlider {
     return this._showsLabels;
   }
 
-  public get orientation(): Orientation {
-    return this._orientation;
-  }
-
   public get sliderSize(): SliderSize {
     return this._size;
   }
 
   public get valueFieldsAreEnabled(): boolean {
     return this._enableValueFields;
+  }
+
+  public get multiValue(): boolean {
+    return this._mutliValue;
+  }
+
+  public get lowValue(): number {
+    return this._lowValue;
+  }
+
+  public get highValue(): number {
+    return this._highValue;
   }
 
   // ====== Setter ======
@@ -85,7 +104,7 @@ export class ClrSlider {
     }
 
     this._value = newvalue;
-    this.onValueChanged.emit(value);
+    this.onValueChanged.emit({ valueType: SliderValueType.value, value: value });
   }
 
   @Input('clrMinValue')
@@ -122,17 +141,12 @@ export class ClrSlider {
 
   @Input('clrStep')
   public set step(step: number) {
-    this._step = step > 0 ? this._step : step;
+    this._step = step > 0 ? step : 1;
   }
 
   @Input('clrShowsLabels')
   public set showLabels(showsLabels: boolean) {
     this._showsLabels = showsLabels;
-  }
-
-  @Input('clrOrientation')
-  public set orientation(orientation: Orientation) {
-    this._orientation = orientation;
   }
 
   @Input('clrSliderSize')
@@ -143,6 +157,23 @@ export class ClrSlider {
   @Input('clrEnableValueFields')
   public set enableValueFields(enableValueFields: boolean) {
     this._enableValueFields = enableValueFields;
+  }
+
+  @Input('clrMultiValue')
+  public set multiValue(multiValue: boolean) {
+    this._mutliValue = multiValue;
+  }
+
+  @Input('clrLowValue')
+  public set lowValue(lowValue: number) {
+    this._lowValue = lowValue;
+    this.onValueChanged.emit({ valueType: SliderValueType.lowvalue, value: lowValue });
+  }
+
+  @Input('clrMultiValue')
+  public set highValue(highValue: number) {
+    this._highValue = highValue;
+    this.onValueChanged.emit({ valueType: SliderValueType.highvalue, value: highValue });
   }
 
   // ====== Tools ======

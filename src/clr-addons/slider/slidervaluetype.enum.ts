@@ -4,7 +4,8 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export enum Orientation {
-  horizontal = 'horizontal',
-  vertical = 'vertical',
+export enum SliderValueType {
+  value = 'value',
+  lowvalue = 'lowValue',
+  highvalue = 'highValue',
 }

@@ -51,7 +51,8 @@
             ],
             "styles": [
               "node_modules/@clr/icons/clr-icons.min.css",
-              "node_modules/prismjs/themes/prism-solarizedlight.css"
+              "node_modules/prismjs/themes/prism-solarizedlight.css",
+              "node_modules/multirange/multirange.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules"]

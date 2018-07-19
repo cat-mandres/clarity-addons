@@ -7,139 +7,241 @@
   <h2>Slider</h2>
 
   <div>
-    <h4>[Horizontal] Different Sizes:</h4>
-    <br>
-    <diV class="double-value-grid">
-      <diV>
-        Small (<code>{{this._horiSliderSize1.sliderSize}}</code>)
-      </diV>
-      <clr-slider #horiSliderSize1 [clrSliderSize]="this._sliderSize.small" [clrShowsLabels]="false"></clr-slider>
-
-      <diV>
-        Medium (<code>{{this._horiSliderSize2.sliderSize}}</code>)
-      </diV>
-      <clr-slider #horiSliderSize2 [clrSliderSize]="this._sliderSize.medium" [clrShowsLabels]="false"></clr-slider>
-
-      <diV>
-        Large (<code>{{this._horiSliderSize3.sliderSize}}</code>)
-      </diV>
-      <clr-slider #horiSliderSize3 [clrSliderSize]="this._sliderSize.large" [clrShowsLabels]="false"></clr-slider>
-
-      <diV>
-        X-Large (<code>{{this._horiSliderSize4.sliderSize}}</code>)
-      </diV>
-      <clr-slider #horiSliderSize4 [clrSliderSize]="this._sliderSize.xlarge" [clrShowsLabels]="false"></clr-slider>
-    </diV>
+    <h4>Different Sizes:</h4>
+    <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th class="left">Small (<code>{{this._horiSliderSize1.sliderSize}}</code>)</th>
+            <td class="left">
+              <clr-slider #horiSliderSize1
+                          [clrSliderSize]="this._sliderSize.small"
+                          [clrShowsLabels]="false">
+              </clr-slider>
+            </td>
+          </tr>
+          <tr>
+            <th class="left">Medium (<code>{{this._horiSliderSize2.sliderSize}}</code>)</th>
+            <td class="left">
+              <clr-slider #horiSliderSize2
+                          [clrSliderSize]="this._sliderSize.medium"
+                          [clrShowsLabels]="false">
+              </clr-slider>
+            </td>
+          </tr>
+          <tr>
+            <th class="left">Large (<code>{{this._horiSliderSize3.sliderSize}}</code>)</th>
+            <td class="left">
+              <clr-slider #horiSliderSize3
+                          [clrSliderSize]="this._sliderSize.large"
+                          [clrShowsLabels]="false">
+              </clr-slider>
+            </td>
+          </tr>
+          <tr>
+            <th class="left">X-Large (<code>{{this._horiSliderSize4.sliderSize}}</code>)</th>
+            <td class="left">
+              <clr-slider #horiSliderSize4
+                          [clrSliderSize]="this._sliderSize.xlarge"
+                          [clrShowsLabels]="false">
+              </clr-slider>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <hr>
 
   <div>
-    <h4>[Vertical] Different Sizes:</h4>
-    <br>
-    <diV class="quadruple-value-grid">
-      <diV>
-        Small (<code>{{this._vertSliderSize1.sliderSize}}</code>)
-      </diV>
-      <diV>
-        Medium (<code>{{this._vertSliderSize2.sliderSize}}</code>)
-      </diV>
-      <diV>
-        Large (<code>{{this._vertSliderSize3.sliderSize}}</code>)
-      </diV>
-      <diV>
-        X-Large (<code>{{this._vertSliderSize4.sliderSize}}</code>)
-      </diV>
+    <h4>En- Disable value input fields:</h4>
 
-      <clr-slider #vertSliderSize1
-                  [clrSliderSize]="this._sliderSize.small"
-                  [clrShowsLabels]="false"
-                  [clrOrientation]="this._sliderOrientation.vertical"></clr-slider>
+    <div class="clr-row">
+      <div class="clr-col-sm-3">
+        <span class="left">{{this._sliderValueFields1.valueFieldsAreEnabled?"Disable":"Enable"}}</span>
+      </div>
+      <div class="clr-col-sm-2 clr-offset-sm-6">
+        <span>Value</span>
+      </div>
 
-      <clr-slider #vertSliderSize2
-                  [clrSliderSize]="this._sliderSize.medium"
-                  [clrShowsLabels]="false">
-                  [clrOrientation]="this._sliderOrientation.vertical"></clr-slider>
+      <div class="clr-break-row"></div>
 
-      <clr-slider #vertSliderSize3
-                  [clrSliderSize]="this._sliderSize.large"
-                  [clrShowsLabels]="false">
-                  [clrOrientation]="this._sliderOrientation.vertical"></clr-slider>
-
-      <clr-slider #vertSliderSize4
-                  [clrSliderSize]="this._sliderSize.xlarge"
-                  [clrShowsLabels]="false">
-                  [clrOrientation]="this._sliderOrientation.vertical"></clr-slider>
-    </diV>
+      <div class="clr-col-sm-1">
+        <input type="checkbox"
+               [checked]="this._sliderValueFields1.valueFieldsAreEnabled"
+               (change)="this._sliderValueFields1.enableValueFields= $event.target.checked">
+      </div>
+      <div class="clr-col-sm-8">
+        <clr-slider #sliderValueFields1
+                    [clrEnableValueFields]="false"
+                    [clrSliderSize]="this._sliderSize.large">
+        </clr-slider>
+      </div>
+      <div class="clr-col-sm-2">
+        <span>{{this._sliderValueFields1.value}}</span>
+      </div>
+    </div>
   </div>
 
   <hr>
 
-  <diV>
-    <h4>En- Disable value input fields:</h4>
-    <br>
-
-    <div class="triple-value-grid">
-      <div>
-        <input type="checkbox"
-               [checked]="this._sliderValueFields1.valueFieldsAreEnabled"
-               (change)="this._sliderValueFields1.enableValueFields= $event.target.checked">
-        {{this._sliderValueFields1.valueFieldsAreEnabled?"Disable":"Enable"}}
-      </div>
-      <clr-slider #sliderValueFields1 [clrEnableValueFields]="false"></clr-slider>
-      <div>
-        Value: {{this._sliderValueFields1.value}}
-      </div>
-    </div>
-  </diV>
-
-  <hr>
-
-  <diV>
+  <div>
     <h4>Show and Hide value input fields:</h4>
-    <br>
 
-    <div class="triple-value-grid">
-      <div>
+    <div class="clr-row">
+      <div class="clr-col-sm-3">
+        <span class="left">{{this._sliderShowsLabels1.showsLabels?"Hide":"Show"}}</span>
+      </div>
+      <div class="clr-col-sm-2 clr-offset-sm-6">
+        <span>Value</span>
+      </div>
+
+      <div class="clr-break-row"></div>
+
+      <div class="clr-col-sm-1">
         <input type="checkbox"
                [checked]="this._sliderShowsLabels1.showsLabels"
                (change)="this._sliderShowsLabels1.showLabels= $event.target.checked">
-        {{this._sliderShowsLabels1.showsLabels?"Hide":"Show"}}
       </div>
-      <clr-slider #sliderShowsLabels1 [clrShowsLabels]="false"></clr-slider>
-      <div>
-        Value: {{this._sliderShowsLabels1.value}}
+      <div class="clr-col-sm-8">
+        <clr-slider #sliderShowsLabels1 [clrShowsLabels]="false" [clrSliderSize]="this._sliderSize.large"></clr-slider>
+      </div>
+      <div class="clr-col-sm-2">
+        <span>{{this._sliderShowsLabels1.value}}</span>
       </div>
     </div>
-  </diV>
+  </div>
+
+  <hr>
+
+  <div>
+    <h4>Range Selection (mutlitple values):</h4>
+    <div class="clr-row">
+      <div class="clr-col-sm-3">
+        <span class="left">{{this._sliderRangeSelection1.multiValue?"Single-Value":"Range-Selection"}}</span>
+      </div>
+      <div class="clr-col-sm-2 clr-offset-sm-6">
+        <span>Value</span>
+      </div>
+
+      <div class="clr-break-row"></div>
+
+      <div class="clr-col-sm-1">
+        <input type="checkbox"
+               [checked]="this._sliderRangeSelection1.multiValue"
+               (change)="this._sliderRangeSelection1.multiValue= $event.target.checked">
+      </div>
+      <div class="clr-col-sm-8">
+        <clr-slider #sliderRangeSelection1
+                    [clrMultiValue]="true"
+                    [clrSliderSize]="this._sliderSize.large"
+                    [clrEnableValueFields]="false">
+        </clr-slider>
+      </div>
+      <div class="clr-col-sm-2">
+        <span *ngIf="this._sliderRangeSelection1.multiValue; else singleValueSliderOutput">
+          {{this._sliderRangeSelection1.lowValue}}, {{this._sliderRangeSelection1.highValue}}
+        </span>
+        <ng-template #singleValueSliderOutput>
+          {{this._sliderRangeSelection1.value}}
+        </ng-template>
+      </div>
+    </div>
+  </div>
 
   <hr>
 
   <diV>
     <h4>Miscellaneous features:</h4>
     <br>
-
-    <clr-slider #sliderMisc1 [clrShowsLabels]="false"></clr-slider>
-
-    <br>
-    <br>
-    <div class="misc-value-grid">
-      <div>
-        Value:
-      </div>
-      <input #sliderMisc1NumberValue type="number" [value]="this._sliderMisc1.value" (change)="this._sliderMisc1.value = this._sliderMisc1NumberValue.nativeElement.value">
-      <div>
-        Maximum:
-      </div>
-      <input type="number">
-      <div>
-        Minimum:
-      </div>
-      <input type="number">
-      <div class="without-bottom-line">
-        Step:
-      </div>
-      <input type="number">
+    <div class="horizontal-center">
+      <clr-slider #sliderMisc1 [clrShowsLabels]="false" [clrSliderSize]="this._sliderSize.xlarge"></clr-slider>
+    </div>
+    <div class="col-xs-12 col-md-12 col-lg-6 col-xl-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Settings</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="this._sliderMisc1.multiValue">
+              <th class="left">Lower Value:</th>
+              <td class="left">
+                <input #sliderMisc1NumberLowValue
+                       type="number"
+                       [value]="this._sliderMisc1.lowValue"
+                       (change)="this._sliderMisc1.lowValue = this._sliderMisc1NumberLowValue.nativeElement.value"
+                       [max]="this._sliderMisc1.maxValue"
+                       [min]="this._sliderMisc1.minValue">
+              </td>
+            </tr>
+            <tr *ngIf="this._sliderMisc1.multiValue">
+              <th class="left">Higher Value:</th>
+              <td class="left">
+                <input #sliderMisc1NumberLowValue
+                       type="number"
+                       [value]="this._sliderMisc1.highValue"
+                       (change)="this._sliderMisc1.highValue = this._sliderMisc1NumberHighValue.nativeElement.value"
+                       [max]="this._sliderMisc1.maxValue"
+                       [min]="this._sliderMisc1.minValue">
+              </td>
+            </tr>
+            <tr *ngIf="!this._sliderMisc1.multiValue">
+              <th class="left">Value:</th>
+              <td class="left">
+                <input #sliderMisc1NumberValue
+                       type="number"
+                       [value]="this._sliderMisc1.value"
+                       (change)="this._sliderMisc1.value = this._sliderMisc1NumberValue.nativeElement.value"
+                       [max]="this._sliderMisc1.maxValue"
+                       [min]="this._sliderMisc1.minValue">
+              </td>
+            </tr>
+          <tr>
+            <th class="left">Maximum:</th>
+            <td class="left">
+              <input #sliderMisc1MaxValue
+                     type="number"
+                     [value]="this._sliderMisc1.maxValue"
+                     (change)="this._sliderMisc1.maxValue = this._sliderMisc1MaxValue.nativeElement.value">
+            </td>
+          </tr>
+          <tr>
+            <th class="left">Minimum:</th>
+            <td class="left">
+              <input #sliderMisc1MinValue
+                     type="number"
+                     [value]="this._sliderMisc1.minValue"
+                     (change)="this._sliderMisc1.minValue = this._sliderMisc1MinValue.nativeElement.value">
+            </td>
+          </tr>
+          <tr>
+            <th class="left">Step:</th>
+            <td class="left">
+              <input #sliderMisc1StepValue
+                     type="number"
+                     [value]="this._sliderMisc1.step"
+                     (change)="this._sliderMisc1.step = this._sliderMisc1StepValue.nativeElement.value"
+                     [min]="1"
+                     [max]="this._sliderMisc1.maxValue">
+            </td>
+          </tr>
+          <tr>
+            <th class="left">Range Selection:</th>
+            <td class="left">
+              <input type="checkbox"
+                     [checked]="this.sliderMisc1._mutliValue"
+                     (change)="this._sliderMisc1.multiValue= $event.target.checked">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="position: relative">
     </div>
   </diV>
+
 </div>

@@ -5,47 +5,63 @@
   -->
 
 <div class="slider-outer-wrapper">
-  <!--<h4>Value: {{_value}}</h4>
-
-  <div></div>
-  <div></div>-->
-  <div [hidden]="!_showsLabels">
-    <input class="value-boundary"
-           title="Minimum"
-           type="number"
-           name="Minimum"
-           [(ngModel)]="_minValue"
-           [disabled]="!_enableValueFields"
-           (change)="onMinValueChange($event.target.value)">
+  <div *ngIf="this._showsLabels">
+      <input *ngIf="this._enableValueFields; else minValueLabel"
+             class="value-boundary"
+             title="Minimum"
+             type="number"
+             name="Minimum"
+             [(ngModel)]="this._minValue"
+             [disabled]="!this._enableValueFields"
+             (change)="this.onMinValueChange($event.target.value)">
+    <ng-template #minValueLabel>
+      <span class="label">{{this._minValue}}</span>
+    </ng-template>
   </div>
 
-  <!-- TODO:-->
-  <!-- .) orient does not seem to get bound to the sliders' base class orientation-->
-  <div [class.slider-orientation-vertical]="_orientation == 'vertical'">
-      <div class="slider-wrapper">
-        <input #slider type="range"
+  <div class="slider-wrapper">
+    <div *ngIf="_mutliValue; else singleValueSlider">
+      <input type="range" multiple
+             [class.slider-size-sm]="this._size == 'sm'"
+             [class.slider-size-md]="this._size == 'md'"
+             [class.slider-size-lg]="this._size == 'lg'"
+             [class.slider-size-xl]="this._size == 'xl'"
+             [(ngModel)]="this._value"
+             (change)="this.valueChanged({valueType: 'value', value: $event.target.value})"
+             [(step)]="this._step"
+             [(min)]="this._minValue"
+             [(max)]="this._maxValue"
+             class="slider"
+             value="{{this._lowValue}},{{this._highValue}}" />
+    </div>
 
-               [class.slider-size-sm]="_size == 'sm'"
-               [class.slider-size-md]="_size == 'md'"
-               [class.slider-size-lg]="_size == 'lg'"
-               [class.slider-size-xl]="_size == 'xl'"
-               [(ngModel)]="_value"
-               (change)="valueChanged($event.target.value)"
-               [(step)]="_step"
-               [(min)]="_minValue"
-               [(max)]="_maxValue"
+    <ng-template #singleValueSlider>
+        <input type="range"
+               [class.slider-size-sm]="this._size == 'sm'"
+               [class.slider-size-md]="this._size == 'md'"
+               [class.slider-size-lg]="this._size == 'lg'"
+               [class.slider-size-xl]="this._size == 'xl'"
+               [(ngModel)]="this._value"
+               (change)="this.valueChanged({valueType: 'value', value: $event.target.value})"
+               [(step)]="this._step"
+               [(min)]="this._minValue"
+               [(max)]="this._maxValue"
                class="slider"
-               [value]="_value">
-      </div>
+               [value]="this._value">
+    </ng-template>
   </div>
 
-  <div [hidden]="!_showsLabels">
-    <input class="value-boundary"
+  <div *ngIf="this._showsLabels">
+    <input *ngIf="this._enableValueFields; else maxValueLabel"
+           class="value-boundary"
            title="Maximum"
            type="number"
            name="Maximum"
-           [disabled]="!_enableValueFields"
-           [(ngModel)]="_maxValue"
-           (change)="onMaxValueChange($event.target.value)">
+           [(ngModel)]="this._maxValue"
+           [disabled]="!this._enableValueFields"
+           (change)="this.onMaxValueChange($event.target.value)">
+    <ng-template #maxValueLabel>
+      <span class="label">{{this._maxValue}}</span>
+    </ng-template>
   </div>
 </div>
