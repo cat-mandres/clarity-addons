@@ -14,6 +14,7 @@ import { ClrMainNavGroupModule } from './main-nav-group/main-nav-group.module';
 import { ClrContentPanelModule } from './content-panel/content-panel.module';
 import { ClrBreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { ClrSliderModule } from './slider/slider.module';
+import { ClrRangeModule } from './slider/range/range.module';
 
 @NgModule({
   exports: [
@@ -25,6 +26,7 @@ import { ClrSliderModule } from './slider/slider.module';
     ClrMainNavGroupModule,
     ClrContentPanelModule,
     ClrSliderModule,
+    ClrRangeModule,
   ],
 })
 export class ClrAddonsModule {}

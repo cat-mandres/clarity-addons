@@ -3,26 +3,19 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ClrSlider } from '@porscheinformatik/clr-addons';
 import { SliderSize } from '../../../../clr-addons/slider/slidersize.enum';
-import { SliderValueType } from '../../../../clr-addons/slider/slidervaluetype.enum';
 
 @Component({
   selector: 'clr-slider-demo',
   styleUrls: ['./slider.demo.scss'],
   templateUrl: './slider.demo.html',
 })
-export class SliderDemo implements OnInit {
-  ngOnInit(): void {
-    this._sliderMisc1.onValueChanged.subscribe(data => {
-      if (data.valueType === SliderValueType.value) {
-        this._sliderMisc1NumberValue.nativeElement.value = data.value;
-      }
-    });
-  }
-
+export class SliderDemo {
   private _sliderSize = SliderSize;
+
+  private _showMultiValues = false;
 
   @ViewChild('horiSliderSize1') private _horiSliderSize1: ClrSlider;
   @ViewChild('horiSliderSize2') private _horiSliderSize2: ClrSlider;

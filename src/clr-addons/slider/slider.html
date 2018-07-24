@@ -1,67 +1,61 @@
 <!--
   ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
-  ~ This software is released under MIT license.
-  ~ The full license information can be found in LICENSE in the root directory of this project.
+  ~ software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of project.
   -->
 
-<div class="slider-outer-wrapper">
-  <div *ngIf="this._showsLabels">
-      <input *ngIf="this._enableValueFields; else minValueLabel"
-             class="value-boundary"
-             title="Minimum"
-             type="number"
-             name="Minimum"
-             [(ngModel)]="this._minValue"
-             [disabled]="!this._enableValueFields"
-             (change)="this.onMinValueChange($event.target.value)">
+
+<div class="clr-row flex-items-xs-middle">
+  <div *ngIf="_showsLabels" class="clr-col-xs">
+    <input *ngIf="_enableValueFields; else minValueLabel"
+           class="value-boundary"
+           title="Minimum"
+           type="number"
+           name="Minimum"
+           [(ngModel)]="_minValue"
+           [disabled]="!_enableValueFields"
+           (change)="onMinValueChange($event.target.value)">
     <ng-template #minValueLabel>
-      <span class="label">{{this._minValue}}</span>
+      <span class="label">{{_minValue}}</span>
     </ng-template>
   </div>
 
-  <div class="slider-wrapper">
-    <div *ngIf="_mutliValue; else singleValueSlider">
-      <input type="range" multiple
-             [class.slider-size-sm]="this._size == 'sm'"
-             [class.slider-size-md]="this._size == 'md'"
-             [class.slider-size-lg]="this._size == 'lg'"
-             [class.slider-size-xl]="this._size == 'xl'"
-             [(ngModel)]="this._value"
-             (change)="this.valueChanged({valueType: 'value', value: $event.target.value})"
-             [(step)]="this._step"
-             [(min)]="this._minValue"
-             [(max)]="this._maxValue"
-             class="slider"
-             value="{{this._lowValue}},{{this._highValue}}" />
+
+  <div class="clr-col-xs clr-offset-1 multiple-range-wrapper multiple-range-wrapper">
+    <div [hidden]="!_multiValue">
+      <clr-range #rangeSliderComponent
+                 [clrRangeSliderSize]="_size"
+                 [clrRangeSliderStep]="_step"
+                 [clrRangeSliderMinValue]="_minValue"
+                 [clrRangeSliderMaxValue]="_maxValue"></clr-range>
     </div>
 
-    <ng-template #singleValueSlider>
-        <input type="range"
-               [class.slider-size-sm]="this._size == 'sm'"
-               [class.slider-size-md]="this._size == 'md'"
-               [class.slider-size-lg]="this._size == 'lg'"
-               [class.slider-size-xl]="this._size == 'xl'"
-               [(ngModel)]="this._value"
-               (change)="this.valueChanged({valueType: 'value', value: $event.target.value})"
-               [(step)]="this._step"
-               [(min)]="this._minValue"
-               [(max)]="this._maxValue"
-               class="slider"
-               [value]="this._value">
-    </ng-template>
+    <div class="slider-wrapper" [hidden]="_multiValue">
+      <input type="range"
+             [class.slider-size-sm]="_size === 'sm'"
+             [class.slider-size-md]="_size === 'md'"
+             [class.slider-size-lg]="_size === 'lg'"
+             [class.slider-size-xl]="_size === 'xl'"
+             [(ngModel)]="_value"
+             (change)="valueChanged({valueType: 'value', value: $event.target.value})"
+             [(step)]="_step"
+             [(min)]="_minValue"
+             [(max)]="_maxValue"
+             class="slider">
+    </div>
   </div>
 
-  <div *ngIf="this._showsLabels">
-    <input *ngIf="this._enableValueFields; else maxValueLabel"
+  <div *ngIf="_showsLabels" class="clr-col-xs clr-offset-1">
+    <input *ngIf="_enableValueFields; else maxValueLabel"
            class="value-boundary"
            title="Maximum"
            type="number"
            name="Maximum"
-           [(ngModel)]="this._maxValue"
-           [disabled]="!this._enableValueFields"
-           (change)="this.onMaxValueChange($event.target.value)">
+           [(ngModel)]="_maxValue"
+           [disabled]="!_enableValueFields"
+           (change)="onMaxValueChange($event.target.value)">
     <ng-template #maxValueLabel>
-      <span class="label">{{this._maxValue}}</span>
+      <span class="label">{{_maxValue}}</span>
     </ng-template>
   </div>
 </div>

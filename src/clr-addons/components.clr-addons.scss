@@ -6,6 +6,7 @@
 @import './content-panel/content-panel';
 @import './breadcrumb/breadcrumb';
 @import './slider/slider';
+@import './slider/range/range';
 
 .content-header {
   border-bottom: $clr-global-borderwidth solid $clr-light-midtone-gray;

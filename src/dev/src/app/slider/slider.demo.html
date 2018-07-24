@@ -8,42 +8,52 @@
 
   <div>
     <h4>Different Sizes:</h4>
+    <span class="label">
+      <input type="checkbox"
+             [checked]="_showMultiValues"
+             (change)="_showMultiValues= $event.target.checked">
+       Range-Selection
+    </span>
     <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
       <table class="table">
         <tbody>
           <tr>
-            <th class="left">Small (<code>{{this._horiSliderSize1.sliderSize}}</code>)</th>
+            <th class="left">Small (<code>{{_horiSliderSize1.sliderSize}}</code>)</th>
             <td class="left">
               <clr-slider #horiSliderSize1
-                          [clrSliderSize]="this._sliderSize.small"
-                          [clrShowsLabels]="false">
+                          [clrSliderSize]="_sliderSize.small"
+                          [clrShowsLabels]="false"
+                          [clrMultiValue]="_showMultiValues">
               </clr-slider>
             </td>
           </tr>
           <tr>
-            <th class="left">Medium (<code>{{this._horiSliderSize2.sliderSize}}</code>)</th>
-            <td class="left">
+            <th class="left">Medium (<code>{{_horiSliderSize2.sliderSize}}</code>)</th>
+            <td>
               <clr-slider #horiSliderSize2
-                          [clrSliderSize]="this._sliderSize.medium"
-                          [clrShowsLabels]="false">
+                          [clrSliderSize]="_sliderSize.medium"
+                          [clrShowsLabels]="false"
+                          [clrMultiValue]="_showMultiValues">
               </clr-slider>
             </td>
           </tr>
           <tr>
-            <th class="left">Large (<code>{{this._horiSliderSize3.sliderSize}}</code>)</th>
+            <th class="left">Large (<code>{{_horiSliderSize3.sliderSize}}</code>)</th>
             <td class="left">
               <clr-slider #horiSliderSize3
-                          [clrSliderSize]="this._sliderSize.large"
-                          [clrShowsLabels]="false">
+                          [clrSliderSize]="_sliderSize.large"
+                          [clrShowsLabels]="false"
+                          [clrMultiValue]="_showMultiValues">
               </clr-slider>
             </td>
           </tr>
           <tr>
-            <th class="left">X-Large (<code>{{this._horiSliderSize4.sliderSize}}</code>)</th>
-            <td class="left">
+            <th class="left">X-Large (<code>{{_horiSliderSize4.sliderSize}}</code>)</th>
+            <td>
               <clr-slider #horiSliderSize4
-                          [clrSliderSize]="this._sliderSize.xlarge"
-                          [clrShowsLabels]="false">
+                          [clrSliderSize]="_sliderSize.xlarge"
+                          [clrShowsLabels]="false"
+                          [clrMultiValue]="_showMultiValues">
               </clr-slider>
             </td>
           </tr>
@@ -59,7 +69,7 @@
 
     <div class="clr-row">
       <div class="clr-col-sm-3">
-        <span class="left">{{this._sliderValueFields1.valueFieldsAreEnabled?"Disable":"Enable"}}</span>
+        <span class="left">{{_sliderValueFields1.valueFieldsAreEnabled?"Disable":"Enable"}}</span>
       </div>
       <div class="clr-col-sm-2 clr-offset-sm-6">
         <span>Value</span>
@@ -69,17 +79,17 @@
 
       <div class="clr-col-sm-1">
         <input type="checkbox"
-               [checked]="this._sliderValueFields1.valueFieldsAreEnabled"
-               (change)="this._sliderValueFields1.enableValueFields= $event.target.checked">
+               [checked]="_sliderValueFields1.valueFieldsAreEnabled"
+               (change)="_sliderValueFields1.enableValueFields= $event.target.checked">
       </div>
       <div class="clr-col-sm-8">
         <clr-slider #sliderValueFields1
                     [clrEnableValueFields]="false"
-                    [clrSliderSize]="this._sliderSize.large">
+                    [clrSliderSize]="_sliderSize.large">
         </clr-slider>
       </div>
       <div class="clr-col-sm-2">
-        <span>{{this._sliderValueFields1.value}}</span>
+        <span>{{_sliderValueFields1.value}}</span>
       </div>
     </div>
   </div>
@@ -91,7 +101,7 @@
 
     <div class="clr-row">
       <div class="clr-col-sm-3">
-        <span class="left">{{this._sliderShowsLabels1.showsLabels?"Hide":"Show"}}</span>
+        <span class="left">{{_sliderShowsLabels1.showsLabels?"Hide":"Show"}}</span>
       </div>
       <div class="clr-col-sm-2 clr-offset-sm-6">
         <span>Value</span>
@@ -101,14 +111,14 @@
 
       <div class="clr-col-sm-1">
         <input type="checkbox"
-               [checked]="this._sliderShowsLabels1.showsLabels"
-               (change)="this._sliderShowsLabels1.showLabels= $event.target.checked">
+               [checked]="_sliderShowsLabels1.showsLabels"
+               (change)="_sliderShowsLabels1.showLabels= $event.target.checked">
       </div>
       <div class="clr-col-sm-8">
-        <clr-slider #sliderShowsLabels1 [clrShowsLabels]="false" [clrSliderSize]="this._sliderSize.large"></clr-slider>
+        <clr-slider #sliderShowsLabels1 [clrShowsLabels]="false" [clrSliderSize]="_sliderSize.large"></clr-slider>
       </div>
       <div class="clr-col-sm-2">
-        <span>{{this._sliderShowsLabels1.value}}</span>
+        <span>{{_sliderShowsLabels1.value}}</span>
       </div>
     </div>
   </div>
@@ -119,7 +129,7 @@
     <h4>Range Selection (mutlitple values):</h4>
     <div class="clr-row">
       <div class="clr-col-sm-3">
-        <span class="left">{{this._sliderRangeSelection1.multiValue?"Single-Value":"Range-Selection"}}</span>
+        <span class="left">{{_sliderRangeSelection1.multiValue?"Single-Value":"Range-Selection"}}</span>
       </div>
       <div class="clr-col-sm-2 clr-offset-sm-6">
         <span>Value</span>
@@ -129,22 +139,22 @@
 
       <div class="clr-col-sm-1">
         <input type="checkbox"
-               [checked]="this._sliderRangeSelection1.multiValue"
-               (change)="this._sliderRangeSelection1.multiValue= $event.target.checked">
+               [checked]="_sliderRangeSelection1.multiValue"
+               (change)="_sliderRangeSelection1.multiValue= $event.target.checked">
       </div>
       <div class="clr-col-sm-8">
         <clr-slider #sliderRangeSelection1
                     [clrMultiValue]="true"
-                    [clrSliderSize]="this._sliderSize.large"
+                    [clrSliderSize]="_sliderSize.large"
                     [clrEnableValueFields]="false">
         </clr-slider>
       </div>
       <div class="clr-col-sm-2">
-        <span *ngIf="this._sliderRangeSelection1.multiValue; else singleValueSliderOutput">
-          {{this._sliderRangeSelection1.lowValue}}, {{this._sliderRangeSelection1.highValue}}
+        <span *ngIf="_sliderRangeSelection1.multiValue; else singleValueSliderOutput">
+          {{_sliderRangeSelection1.rangeSliderComponent.lowValue}}, {{_sliderRangeSelection1.rangeSliderComponent.highValue}}
         </span>
         <ng-template #singleValueSliderOutput>
-          {{this._sliderRangeSelection1.value}}
+          {{_sliderRangeSelection1.value}}
         </ng-template>
       </div>
     </div>
@@ -156,7 +166,10 @@
     <h4>Miscellaneous features:</h4>
     <br>
     <div class="horizontal-center">
-      <clr-slider #sliderMisc1 [clrShowsLabels]="false" [clrSliderSize]="this._sliderSize.xlarge"></clr-slider>
+      <clr-slider #sliderMisc1
+                  [clrShowsLabels]="false"
+                  [clrSliderSize]="_sliderSize.xlarge"
+      ></clr-slider>
     </div>
     <div class="col-xs-12 col-md-12 col-lg-6 col-xl-4">
       <table class="table">
@@ -167,37 +180,43 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngIf="this._sliderMisc1.multiValue">
+            <tr *ngIf="_sliderMisc1.multiValue">
               <th class="left">Lower Value:</th>
               <td class="left">
-                <input #sliderMisc1NumberLowValue
+                <input #sliderMisc1LowValue
                        type="number"
-                       [value]="this._sliderMisc1.lowValue"
-                       (change)="this._sliderMisc1.lowValue = this._sliderMisc1NumberLowValue.nativeElement.value"
-                       [max]="this._sliderMisc1.maxValue"
-                       [min]="this._sliderMisc1.minValue">
+                       [value]="_sliderMisc1.rangeSliderComponent.lowValue"
+                       (change)="_sliderMisc1.rangeSliderComponent.lowValue = _sliderMisc1NumberLowValue.nativeElement.value"
+                       [max]="_sliderMisc1.maxValue"
+                       [min]="_sliderMisc1.minValue">
               </td>
             </tr>
-            <tr *ngIf="this._sliderMisc1.multiValue">
+            <tr *ngIf="_sliderMisc1.multiValue">
               <th class="left">Higher Value:</th>
               <td class="left">
-                <input #sliderMisc1NumberLowValue
+                <input #sliderMisc1HighValue
                        type="number"
-                       [value]="this._sliderMisc1.highValue"
-                       (change)="this._sliderMisc1.highValue = this._sliderMisc1NumberHighValue.nativeElement.value"
-                       [max]="this._sliderMisc1.maxValue"
-                       [min]="this._sliderMisc1.minValue">
+                       [value]="_sliderMisc1.rangeSliderComponent.highValue"
+                       (change)="_sliderMisc1.rangeSliderComponent.highValue = _sliderMisc1NumberHighValue.nativeElement.value"
+                       [max]="_sliderMisc1.maxValue"
+                       [min]="_sliderMisc1.minValue">
               </td>
             </tr>
-            <tr *ngIf="!this._sliderMisc1.multiValue">
+            <tr *ngIf="_sliderMisc1.multiValue">
+              <th class="left">Range Value:</th>
+              <td class="left">
+                <span class="label">{{_sliderMisc1.rangeSliderComponent.range}}</span>
+              </td>
+            </tr>
+            <tr *ngIf="!_sliderMisc1.multiValue">
               <th class="left">Value:</th>
               <td class="left">
                 <input #sliderMisc1NumberValue
                        type="number"
-                       [value]="this._sliderMisc1.value"
-                       (change)="this._sliderMisc1.value = this._sliderMisc1NumberValue.nativeElement.value"
-                       [max]="this._sliderMisc1.maxValue"
-                       [min]="this._sliderMisc1.minValue">
+                       [value]="_sliderMisc1.value"
+                       (change)="_sliderMisc1.value = _sliderMisc1NumberValue.nativeElement.value"
+                       [max]="_sliderMisc1.maxValue"
+                       [min]="_sliderMisc1.minValue">
               </td>
             </tr>
           <tr>
@@ -205,8 +224,8 @@
             <td class="left">
               <input #sliderMisc1MaxValue
                      type="number"
-                     [value]="this._sliderMisc1.maxValue"
-                     (change)="this._sliderMisc1.maxValue = this._sliderMisc1MaxValue.nativeElement.value">
+                     [value]="_sliderMisc1.maxValue"
+                     (change)="_sliderMisc1.maxValue = _sliderMisc1MaxValue.nativeElement.value">
             </td>
           </tr>
           <tr>
@@ -214,8 +233,8 @@
             <td class="left">
               <input #sliderMisc1MinValue
                      type="number"
-                     [value]="this._sliderMisc1.minValue"
-                     (change)="this._sliderMisc1.minValue = this._sliderMisc1MinValue.nativeElement.value">
+                     [value]="_sliderMisc1.minValue"
+                     (change)="_sliderMisc1.minValue = _sliderMisc1MinValue.nativeElement.value">
             </td>
           </tr>
           <tr>
@@ -223,25 +242,22 @@
             <td class="left">
               <input #sliderMisc1StepValue
                      type="number"
-                     [value]="this._sliderMisc1.step"
-                     (change)="this._sliderMisc1.step = this._sliderMisc1StepValue.nativeElement.value"
+                     [value]="_sliderMisc1.step"
+                     (change)="_sliderMisc1.step = _sliderMisc1StepValue.nativeElement.value"
                      [min]="1"
-                     [max]="this._sliderMisc1.maxValue">
+                     [max]="_sliderMisc1.maxValue">
             </td>
           </tr>
           <tr>
             <th class="left">Range Selection:</th>
             <td class="left">
               <input type="checkbox"
-                     [checked]="this.sliderMisc1._mutliValue"
-                     (change)="this._sliderMisc1.multiValue= $event.target.checked">
+                     [checked]="sliderMisc1._mutliValue"
+                     (change)="_sliderMisc1.multiValue= $event.target.checked">
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div style="position: relative">
-    </div>
   </diV>
-
 </div>

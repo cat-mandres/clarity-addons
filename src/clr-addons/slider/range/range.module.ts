@@ -9,12 +9,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ClarityModule } from '@clr/angular';
 
-import { ClrSlider } from './slider';
-import { ClrRangeModule } from './range';
+import { ClrRange } from './range';
 
 @NgModule({
-  imports: [CommonModule, ClarityModule, FormsModule, ClrRangeModule],
-  declarations: [ClrSlider],
-  exports: [ClrSlider],
+  imports: [CommonModule, ClarityModule, FormsModule],
+  declarations: [ClrRange],
+  exports: [ClrRange],
 })
-export class ClrSliderModule {}
+export class ClrRangeModule {}

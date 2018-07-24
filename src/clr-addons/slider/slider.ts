@@ -4,9 +4,10 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { SliderSize } from './slidersize.enum';
 import { SliderValueType } from './slidervaluetype.enum';
+import { ClrRange } from './range';
 
 @Component({
   selector: 'clr-slider',
@@ -14,19 +15,20 @@ import { SliderValueType } from './slidervaluetype.enum';
 })
 export class ClrSlider {
   @Output('clrValueChanged') onValueChanged: EventEmitter<any> = new EventEmitter(false);
+  @ViewChild('rangeSliderComponent') private _rangeSliderComponent: ClrRange;
 
   // ====== Events ======
   valueChanged(value): void {
     this.onValueChanged.emit(value);
     switch (value.valueType) {
       case SliderValueType.value:
-        this.value = value.value;
+        this._value = value.value;
         break;
       case SliderValueType.lowvalue:
-        this.highValue = value.value;
+        this._lowValue = +value.value.split(',')[0];
         break;
       case SliderValueType.highvalue:
-        this.highValue = value.value;
+        this._highValue = +value.value.split(',')[1];
         break;
       default:
         break;
@@ -34,24 +36,24 @@ export class ClrSlider {
   }
 
   onMinValueChange(newMinValue: number): void {
-    this.minValue = newMinValue;
+    this._minValue = newMinValue;
   }
 
   onMaxValueChange(newMaxValue: number): void {
-    this.maxValue = newMaxValue;
+    this._maxValue = newMaxValue;
   }
 
   // == Private Fields ==
-  private _value = 0;
+  private _highValue = 50;
   private _minValue = 0;
+  private _lowValue = 0;
   private _maxValue = 50;
   private _step = 1;
+  private _value = 0;
+  private _multiValue = false;
   private _showsLabels = true;
-  private _size = SliderSize.medium;
   private _enableValueFields = true;
-  private _mutliValue = false;
-  private _lowValue = this._maxValue;
-  private _highValue = this._minValue;
+  private _size = SliderSize.medium;
 
   // ====== Getter ======
   public get value(): number {
@@ -83,15 +85,11 @@ export class ClrSlider {
   }
 
   public get multiValue(): boolean {
-    return this._mutliValue;
+    return this._multiValue;
   }
 
-  public get lowValue(): number {
-    return this._lowValue;
-  }
-
-  public get highValue(): number {
-    return this._highValue;
+  public get rangeSliderComponent(): ClrRange {
+    return this._rangeSliderComponent;
   }
 
   // ====== Setter ======
@@ -161,19 +159,7 @@ export class ClrSlider {
 
   @Input('clrMultiValue')
   public set multiValue(multiValue: boolean) {
-    this._mutliValue = multiValue;
-  }
-
-  @Input('clrLowValue')
-  public set lowValue(lowValue: number) {
-    this._lowValue = lowValue;
-    this.onValueChanged.emit({ valueType: SliderValueType.lowvalue, value: lowValue });
-  }
-
-  @Input('clrMultiValue')
-  public set highValue(highValue: number) {
-    this._highValue = highValue;
-    this.onValueChanged.emit({ valueType: SliderValueType.highvalue, value: highValue });
+    this._multiValue = multiValue;
   }
 
   // ====== Tools ======
