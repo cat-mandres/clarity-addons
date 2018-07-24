@@ -13,8 +13,8 @@ import { SliderValueType } from '../slidervaluetype.enum';
   templateUrl: './range.html',
 })
 export class ClrRange {
-  @ViewChild('baseValueInputElement') _baseValueInputElement: ElementRef;
-  @ViewChild('ghostValueInputElement') _ghostValueInputElement: ElementRef;
+  @ViewChild('valueInputElement1') _valueInputElement1: ElementRef;
+  @ViewChild('valueInputElement1') _valueInputElement2: ElementRef;
 
   @Output('clrValueChanged') onLowValueChanged: EventEmitter<any> = new EventEmitter(false);
   @Output('clrValueChanged') onHighValueChanged: EventEmitter<any> = new EventEmitter(false);
@@ -36,21 +36,32 @@ export class ClrRange {
     this._highValue = value.value;
   }
 
-  OnMouseMoves(event): boolean {
-    const clickPoint = event.clientX / this._baseValueInputElement.nativeElement.width.px;
+  OnMouseMoves(event) {
+    const clickPoint = event.offsetX / this._valueInputElement1.nativeElement.offsetWidth;
     const clickValue = (this._rangeSliderMaxValue - this._rangeSliderMinValue) * clickPoint;
 
     const lowDiff = Math.abs(this.lowValue - clickValue);
     const highDiff = Math.abs(this.highValue - clickValue);
 
-    if ((lowDiff < highDiff && !this.isInverted) || (this.isInverted && lowDiff > highDiff)) {
-      const passEvent = new MouseEvent('mousedown', { screenX: event.screenX, clientX: event.clientX });
-      this._baseValueInputElement.nativeElement.dispatchEvent(passEvent);
-      event.preventDefault();
-      return false;
+    if (!event.buttons) {
+      if (!this.isInverted) {
+        if (lowDiff < highDiff) {
+          this._valueInputElement1.nativeElement.style.zIndex = 1;
+          this._valueInputElement2.nativeElement.style.zIndex = 3;
+        } else {
+          this._valueInputElement1.nativeElement.style.zIndex = 3;
+          this._valueInputElement2.nativeElement.style.zIndex = 1;
+        }
+      } else {
+        if (lowDiff < highDiff) {
+          this._valueInputElement1.nativeElement.style.zIndex = 3;
+          this._valueInputElement2.nativeElement.style.zIndex = 1;
+        } else {
+          this._valueInputElement1.nativeElement.style.zIndex = 1;
+          this._valueInputElement2.nativeElement.style.zIndex = 3;
+        }
+      }
     }
-
-    return true;
   }
 
   // ====== Getter ======

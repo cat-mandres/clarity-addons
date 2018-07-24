@@ -16,7 +16,7 @@
       top: 0 !important;
     }
 
-    input.on-top[type='range']::-webkit-slider-runnable-track {
+    /*input.on-top[type='range']::-webkit-slider-runnable-track {
       background: transparent !important;
     }
 
@@ -30,26 +30,14 @@
 
     input.on-top[type='range']::-ms-track {
       background: transparent !important;
-    }
-
-    input.below[type='range']::-webkit-slider-thumb {
-      z-index: 2 !important;
-    }
-
-    input.below[type='range']::-moz-range-thumb {
-      z-index: 2 !important;
-    }
-
-    input.below[type='range']::-ms-thumb {
-      z-index: 2 !important;
-    }
+    }*/
 
     .below {
-      z-index: 1 !important;
+      z-index: 1;
     }
 
     .on-top {
-      z-index: 2 !important;
+      z-index: 3;
     }
   }
 }
