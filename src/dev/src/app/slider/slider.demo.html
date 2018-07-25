@@ -18,7 +18,7 @@
       <table class="table">
         <tbody>
           <tr>
-            <th class="left">Small (<code>{{_horiSliderSize1.size}}</code>)</th>
+            <th class="left">Small (<code>{{horiSliderSize1.size}}</code>)</th>
             <td class="left">
               <clr-slider #horiSliderSize1
                           [clrSliderSize]="_sliderSize.small"
@@ -28,7 +28,7 @@
             </td>
           </tr>
           <tr>
-            <th class="left">Medium (<code>{{_horiSliderSize2.size}}</code>)</th>
+            <th class="left">Medium (<code>{{horiSliderSize2.size}}</code>)</th>
             <td>
               <clr-slider #horiSliderSize2
                           [clrSliderSize]="_sliderSize.medium"
@@ -38,7 +38,7 @@
             </td>
           </tr>
           <tr>
-            <th class="left">Large (<code>{{_horiSliderSize3.size}}</code>)</th>
+            <th class="left">Large (<code>{{horiSliderSize3.size}}</code>)</th>
             <td class="left">
               <clr-slider #horiSliderSize3
                           [clrSliderSize]="_sliderSize.large"
@@ -48,7 +48,7 @@
             </td>
           </tr>
           <tr>
-            <th class="left">X-Large (<code>{{_horiSliderSize4.size}}</code>)</th>
+            <th class="left">X-Large (<code>{{horiSliderSize4.size}}</code>)</th>
             <td>
               <clr-slider #horiSliderSize4
                           [clrSliderSize]="_sliderSize.xlarge"
@@ -69,7 +69,7 @@
 
     <div class="clr-row">
       <div class="clr-col-sm-3">
-        <span class="left">{{_sliderValueFields1.enableValueFields?"Disable":"Enable"}}</span>
+        <span class="left">{{sliderValueFields1.enableValueFields?"Disable":"Enable"}}</span>
       </div>
       <div class="clr-col-sm-2 clr-offset-sm-6">
         <span>Value</span>
@@ -79,8 +79,8 @@
 
       <div class="clr-col-sm-1">
         <input type="checkbox"
-               [checked]="_sliderValueFields1.enableValueFields"
-               (change)="_sliderValueFields1.enableValueFields= $event.target.checked">
+               [checked]="sliderValueFields1.enableValueFields"
+               (change)="sliderValueFields1.enableValueFields= $event.target.checked">
       </div>
       <div class="clr-col-sm-8">
         <clr-slider #sliderValueFields1
@@ -89,7 +89,7 @@
         </clr-slider>
       </div>
       <div class="clr-col-sm-2">
-        <span>{{_sliderValueFields1.value}}</span>
+        <span>{{sliderValueFields1.value}}</span>
       </div>
     </div>
   </div>
@@ -101,7 +101,7 @@
 
     <div class="clr-row">
       <div class="clr-col-sm-3">
-        <span class="left">{{_sliderShowsLabels1.showLabels?"Hide":"Show"}}</span>
+        <span class="left">{{sliderShowsLabels1.showLabels?"Hide":"Show"}}</span>
       </div>
       <div class="clr-col-sm-2 clr-offset-sm-6">
         <span>Value</span>
@@ -111,14 +111,14 @@
 
       <div class="clr-col-sm-1">
         <input type="checkbox"
-               [checked]="_sliderShowsLabels1.showLabels"
-               (change)="_sliderShowsLabels1.showLabels= $event.target.checked">
+               [checked]="sliderShowsLabels1.showLabels"
+               (change)="sliderShowsLabels1.showLabels= $event.target.checked">
       </div>
       <div class="clr-col-sm-8">
         <clr-slider #sliderShowsLabels1 [clrShowsLabels]="false" [clrSliderSize]="_sliderSize.large"></clr-slider>
       </div>
       <div class="clr-col-sm-2">
-        <span>{{_sliderShowsLabels1.value}}</span>
+        <span>{{sliderShowsLabels1.value}}</span>
       </div>
     </div>
   </div>
@@ -129,7 +129,7 @@
     <h4>Range Selection (mutlitple values):</h4>
     <div class="clr-row">
       <div class="clr-col-sm-3">
-        <span class="left">{{_sliderRangeSelection1.multiValue?"Single-Value":"Range-Selection"}}</span>
+        <span class="left">{{sliderRangeSelection1.multiValue?"Single-Value":"Range-Selection"}}</span>
       </div>
       <div class="clr-col-sm-2 clr-offset-sm-6">
         <span>Value</span>
@@ -139,8 +139,8 @@
 
       <div class="clr-col-sm-1">
         <input type="checkbox"
-               [checked]="_sliderRangeSelection1.multiValue"
-               (change)="_sliderRangeSelection1.multiValue= $event.target.checked">
+               [checked]="sliderRangeSelection1.multiValue"
+               (change)="sliderRangeSelection1.multiValue= $event.target.checked">
       </div>
       <div class="clr-col-sm-8">
         <clr-slider #sliderRangeSelection1
@@ -150,11 +150,11 @@
         </clr-slider>
       </div>
       <div class="clr-col-sm-2">
-        <span *ngIf="_sliderRangeSelection1.multiValue; else singleValueSliderOutput">
-          {{_sliderRangeSelection1.rangeSliderComponent.lowValue}}, {{_sliderRangeSelection1.rangeSliderComponent.highValue}}
+        <span *ngIf="sliderRangeSelection1.multiValue; else singleValueSliderOutput">
+          {{sliderRangeSelection1.rangeSliderComponent.lowValue}}, {{sliderRangeSelection1.rangeSliderComponent.highValue}}
         </span>
         <ng-template #singleValueSliderOutput>
-          {{_sliderRangeSelection1.value}}
+          {{sliderRangeSelection1.value}}
         </ng-template>
       </div>
     </div>
@@ -180,43 +180,43 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngIf="_sliderMisc1.multiValue">
+            <tr *ngIf="sliderMisc1.multiValue">
               <th class="left">Lower Value:</th>
               <td class="left">
                 <input #sliderMisc1LowValue
                        type="number"
-                       [value]="_sliderMisc1.rangeSliderComponent.lowValue"
-                       (change)="_sliderMisc1.rangeSliderComponent.lowValue = _sliderMisc1NumberLowValue.nativeElement.value"
-                       [max]="_sliderMisc1.maxValue"
-                       [min]="_sliderMisc1.minValue">
+                       [value]="sliderMisc1.rangeSliderComponent.lowValue"
+                       (change)="sliderMisc1.rangeSliderComponent.lowValue = sliderMisc1LowValue.nativeElement.value"
+                       [max]="sliderMisc1.maxValue"
+                       [min]="sliderMisc1.minValue">
               </td>
             </tr>
-            <tr *ngIf="_sliderMisc1.multiValue">
+            <tr *ngIf="sliderMisc1.multiValue">
               <th class="left">Higher Value:</th>
               <td class="left">
                 <input #sliderMisc1HighValue
                        type="number"
-                       [value]="_sliderMisc1.rangeSliderComponent.highValue"
-                       (change)="_sliderMisc1.rangeSliderComponent.highValue = _sliderMisc1NumberHighValue.nativeElement.value"
-                       [max]="_sliderMisc1.maxValue"
-                       [min]="_sliderMisc1.minValue">
+                       [value]="sliderMisc1.rangeSliderComponent.highValue"
+                       (change)="sliderMisc1.rangeSliderComponent.highValue = sliderMisc1HighValue.nativeElement.value"
+                       [max]="sliderMisc1.maxValue"
+                       [min]="sliderMisc1.minValue">
               </td>
             </tr>
-            <tr *ngIf="_sliderMisc1.multiValue">
+            <tr *ngIf="sliderMisc1.multiValue">
               <th class="left">Range Value:</th>
               <td class="left">
-                <span class="label">{{_sliderMisc1.rangeSliderComponent.range}}</span>
+                <span class="label">{{sliderMisc1.rangeSliderComponent.range}}</span>
               </td>
             </tr>
-            <tr *ngIf="!_sliderMisc1.multiValue">
+            <tr *ngIf="!sliderMisc1.multiValue">
               <th class="left">Value:</th>
               <td class="left">
                 <input #sliderMisc1NumberValue
                        type="number"
-                       [value]="_sliderMisc1.value"
-                       (change)="_sliderMisc1.value = _sliderMisc1NumberValue.nativeElement.value"
-                       [max]="_sliderMisc1.maxValue"
-                       [min]="_sliderMisc1.minValue">
+                       [value]="sliderMisc1.value"
+                       (change)="sliderMisc1.value = sliderMisc1NumberValue.nativeElement.value"
+                       [max]="sliderMisc1.maxValue"
+                       [min]="sliderMisc1.minValue">
               </td>
             </tr>
           <tr>
@@ -224,8 +224,8 @@
             <td class="left">
               <input #sliderMisc1MaxValue
                      type="number"
-                     [value]="_sliderMisc1.maxValue"
-                     (change)="_sliderMisc1.maxValue = _sliderMisc1MaxValue.nativeElement.value">
+                     [value]="sliderMisc1.maxValue"
+                     (change)="sliderMisc1.maxValue = sliderMisc1MaxValue.nativeElement.value">
             </td>
           </tr>
           <tr>
@@ -233,8 +233,8 @@
             <td class="left">
               <input #sliderMisc1MinValue
                      type="number"
-                     [value]="_sliderMisc1.minValue"
-                     (change)="_sliderMisc1.minValue = _sliderMisc1MinValue.nativeElement.value">
+                     [value]="sliderMisc1.minValue"
+                     (change)="sliderMisc1.minValue = sliderMisc1MinValue.nativeElement.value">
             </td>
           </tr>
           <tr>
@@ -242,10 +242,10 @@
             <td class="left">
               <input #sliderMisc1StepValue
                      type="number"
-                     [value]="_sliderMisc1.step"
-                     (change)="_sliderMisc1.step = _sliderMisc1StepValue.nativeElement.value"
+                     [value]="sliderMisc1.step"
+                     (change)="sliderMisc1.step = sliderMisc1StepValue.nativeElement.value"
                      [min]="1"
-                     [max]="_sliderMisc1.maxValue">
+                     [max]="sliderMisc1.maxValue">
             </td>
           </tr>
           <tr>
@@ -253,7 +253,7 @@
             <td class="left">
               <input type="checkbox"
                      [checked]="sliderMisc1._mutliValue"
-                     (change)="_sliderMisc1.multiValue= $event.target.checked">
+                     (change)="sliderMisc1.multiValue= $event.target.checked">
             </td>
           </tr>
         </tbody>

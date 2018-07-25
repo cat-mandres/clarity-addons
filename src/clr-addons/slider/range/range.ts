@@ -26,7 +26,7 @@ export class ClrRange {
   @Input('clrRangeSliderLowValue') private _lowValue = this._rangeSliderMinValue;
   @Input('clrRangeSliderHighValue') private _highValue = this._rangeSliderMaxValue;
 
-  private _defaultArrangement: boolean = true;
+  private _defaultArrangement: boolean = false;
 
   lowValueChanged(value): void {
     this.onLowValueChanged.emit(value);
@@ -39,33 +39,17 @@ export class ClrRange {
   }
 
   OnMouseMoves(event) {
+    if (event.buttons) {
+      return;
+    }
+
     const clickPoint = event.offsetX / this._valueInputElement1.nativeElement.offsetWidth;
     const clickValue = (this._rangeSliderMaxValue - this._rangeSliderMinValue) * clickPoint;
 
     const lowDiff = Math.abs(this.lowValue - clickValue);
     const highDiff = Math.abs(this.highValue - clickValue);
 
-    if (!event.buttons) {
-      if (!this.isInverted) {
-        this._defaultArrangement = lowDiff < highDiff;
-        /*if (lowDiff < highDiff) {
-          this._valueInputElement1.nativeElement.style.zIndex = 1;
-          this._valueInputElement2.nativeElement.style.zIndex = 3;
-        } else {
-          this._valueInputElement1.nativeElement.style.zIndex = 3;
-          this._valueInputElement2.nativeElement.style.zIndex = 1;
-        }*/
-      } else {
-        this._defaultArrangement = highDiff < lowDiff;
-        /*if (lowDiff < highDiff) {
-          this._valueInputElement1.nativeElement.style.zIndex = 3;
-          this._valueInputElement2.nativeElement.style.zIndex = 1;
-        } else {
-          this._valueInputElement1.nativeElement.style.zIndex = 1;
-          this._valueInputElement2.nativeElement.style.zIndex = 3;
-        }*/
-      }
-    }
+    this._defaultArrangement = this.isInverted ? lowDiff < highDiff : !(lowDiff < highDiff);
   }
 
   // ====== Getter ======

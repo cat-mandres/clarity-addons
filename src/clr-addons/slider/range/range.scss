@@ -16,24 +16,24 @@
       top: 0 !important;
     }
 
-    input[type='range']:not([class~='top'])::-webkit-slider-runnable-track {
+    input[type='range'][class~='top'] {
       z-index: 3;
-      background: transparent !important;
     }
 
-    input[type='range']:not([class~='top'])::-moz-range-track {
-      z-index: 3;
-      background: transparent !important;
+    input[type='range'][class~='top']::-webkit-slider-runnable-track {
+      background: transparent;
     }
 
-    input[type='range']:not([class~='top'])::-moz-range-progress {
-      z-index: 3;
-      background: transparent !important;
+    input[type='range'][class~='top']::-moz-range-track {
+      background: transparent;
     }
 
-    input[type='range']:not([class~='top'])::-ms-track {
-      z-index: 3;
-      background: transparent !important;
+    input[type='range'][class~='top']::-moz-range-progress {
+      background: transparent;
+    }
+
+    input[type='range'][class~='top']::-ms-track {
+      background: transparent;
     }
 
     .below {
