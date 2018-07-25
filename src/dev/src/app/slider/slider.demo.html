@@ -18,7 +18,7 @@
       <table class="table">
         <tbody>
           <tr>
-            <th class="left">Small (<code>{{_horiSliderSize1.sliderSize}}</code>)</th>
+            <th class="left">Small (<code>{{_horiSliderSize1.size}}</code>)</th>
             <td class="left">
               <clr-slider #horiSliderSize1
                           [clrSliderSize]="_sliderSize.small"
@@ -28,7 +28,7 @@
             </td>
           </tr>
           <tr>
-            <th class="left">Medium (<code>{{_horiSliderSize2.sliderSize}}</code>)</th>
+            <th class="left">Medium (<code>{{_horiSliderSize2.size}}</code>)</th>
             <td>
               <clr-slider #horiSliderSize2
                           [clrSliderSize]="_sliderSize.medium"
@@ -38,7 +38,7 @@
             </td>
           </tr>
           <tr>
-            <th class="left">Large (<code>{{_horiSliderSize3.sliderSize}}</code>)</th>
+            <th class="left">Large (<code>{{_horiSliderSize3.size}}</code>)</th>
             <td class="left">
               <clr-slider #horiSliderSize3
                           [clrSliderSize]="_sliderSize.large"
@@ -48,7 +48,7 @@
             </td>
           </tr>
           <tr>
-            <th class="left">X-Large (<code>{{_horiSliderSize4.sliderSize}}</code>)</th>
+            <th class="left">X-Large (<code>{{_horiSliderSize4.size}}</code>)</th>
             <td>
               <clr-slider #horiSliderSize4
                           [clrSliderSize]="_sliderSize.xlarge"
@@ -69,7 +69,7 @@
 
     <div class="clr-row">
       <div class="clr-col-sm-3">
-        <span class="left">{{_sliderValueFields1.valueFieldsAreEnabled?"Disable":"Enable"}}</span>
+        <span class="left">{{_sliderValueFields1.enableValueFields?"Disable":"Enable"}}</span>
       </div>
       <div class="clr-col-sm-2 clr-offset-sm-6">
         <span>Value</span>
@@ -79,7 +79,7 @@
 
       <div class="clr-col-sm-1">
         <input type="checkbox"
-               [checked]="_sliderValueFields1.valueFieldsAreEnabled"
+               [checked]="_sliderValueFields1.enableValueFields"
                (change)="_sliderValueFields1.enableValueFields= $event.target.checked">
       </div>
       <div class="clr-col-sm-8">
@@ -101,7 +101,7 @@
 
     <div class="clr-row">
       <div class="clr-col-sm-3">
-        <span class="left">{{_sliderShowsLabels1.showsLabels?"Hide":"Show"}}</span>
+        <span class="left">{{_sliderShowsLabels1.showLabels?"Hide":"Show"}}</span>
       </div>
       <div class="clr-col-sm-2 clr-offset-sm-6">
         <span>Value</span>
@@ -111,7 +111,7 @@
 
       <div class="clr-col-sm-1">
         <input type="checkbox"
-               [checked]="_sliderShowsLabels1.showsLabels"
+               [checked]="_sliderShowsLabels1.showLabels"
                (change)="_sliderShowsLabels1.showLabels= $event.target.checked">
       </div>
       <div class="clr-col-sm-8">

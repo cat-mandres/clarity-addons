@@ -16,28 +16,32 @@
       top: 0 !important;
     }
 
-    /*input.on-top[type='range']::-webkit-slider-runnable-track {
+    input[type='range']:not([class~='top'])::-webkit-slider-runnable-track {
+      z-index: 3;
       background: transparent !important;
     }
 
-    input.on-top[type='range']::-moz-range-track {
+    input[type='range']:not([class~='top'])::-moz-range-track {
+      z-index: 3;
       background: transparent !important;
     }
 
-    input.on-top[type='range']::-moz-range-progress {
+    input[type='range']:not([class~='top'])::-moz-range-progress {
+      z-index: 3;
       background: transparent !important;
     }
 
-    input.on-top[type='range']::-ms-track {
+    input[type='range']:not([class~='top'])::-ms-track {
+      z-index: 3;
       background: transparent !important;
-    }*/
+    }
 
     .below {
       z-index: 1;
     }
 
     .on-top {
-      z-index: 3;
+      z-index: 2;
     }
   }
 }

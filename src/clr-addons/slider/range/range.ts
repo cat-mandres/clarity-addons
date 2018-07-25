@@ -5,8 +5,8 @@
  */
 
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { SliderSize } from '../slidersize.enum';
-import { SliderValueType } from '../slidervaluetype.enum';
+import { SliderSize } from '../slider-size.enum';
+import { SliderValueType } from '../slider-value-type.enum';
 
 @Component({
   selector: 'clr-range',
@@ -25,6 +25,8 @@ export class ClrRange {
   @Input('clrRangeSliderMaxValue') private _rangeSliderMaxValue = 50;
   @Input('clrRangeSliderLowValue') private _lowValue = this._rangeSliderMinValue;
   @Input('clrRangeSliderHighValue') private _highValue = this._rangeSliderMaxValue;
+
+  private _defaultArrangement: boolean = true;
 
   lowValueChanged(value): void {
     this.onLowValueChanged.emit(value);
@@ -45,21 +47,23 @@ export class ClrRange {
 
     if (!event.buttons) {
       if (!this.isInverted) {
-        if (lowDiff < highDiff) {
+        this._defaultArrangement = lowDiff < highDiff;
+        /*if (lowDiff < highDiff) {
           this._valueInputElement1.nativeElement.style.zIndex = 1;
           this._valueInputElement2.nativeElement.style.zIndex = 3;
         } else {
           this._valueInputElement1.nativeElement.style.zIndex = 3;
           this._valueInputElement2.nativeElement.style.zIndex = 1;
-        }
+        }*/
       } else {
-        if (lowDiff < highDiff) {
+        this._defaultArrangement = highDiff < lowDiff;
+        /*if (lowDiff < highDiff) {
           this._valueInputElement1.nativeElement.style.zIndex = 3;
           this._valueInputElement2.nativeElement.style.zIndex = 1;
         } else {
           this._valueInputElement1.nativeElement.style.zIndex = 1;
           this._valueInputElement2.nativeElement.style.zIndex = 3;
-        }
+        }*/
       }
     }
   }

@@ -5,8 +5,8 @@
  */
 
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { SliderSize } from './slidersize.enum';
-import { SliderValueType } from './slidervaluetype.enum';
+import { SliderSize } from './slider-size.enum';
+import { SliderValueType } from './slider-value-type.enum';
 import { ClrRange } from './range';
 
 @Component({
@@ -16,6 +16,11 @@ import { ClrRange } from './range';
 export class ClrSlider {
   @Output('clrValueChanged') onValueChanged: EventEmitter<any> = new EventEmitter(false);
   @ViewChild('rangeSliderComponent') private _rangeSliderComponent: ClrRange;
+
+  @Input('clrShowsLabels') showLabels: boolean = true;
+  @Input('clrEnableValueFields') enableValueFields: boolean = true;
+  @Input('clrMultiValue') multiValue: boolean = false;
+  @Input('clrSliderSize') size: SliderSize = SliderSize.medium;
 
   // ====== Events ======
   valueChanged(value): void {
@@ -50,10 +55,6 @@ export class ClrSlider {
   private _maxValue = 50;
   private _step = 1;
   private _value = 0;
-  private _multiValue = false;
-  private _showsLabels = true;
-  private _enableValueFields = true;
-  private _size = SliderSize.medium;
 
   // ====== Getter ======
   public get value(): number {
@@ -70,22 +71,6 @@ export class ClrSlider {
 
   public get step(): number {
     return this._step;
-  }
-
-  public get showsLabels(): boolean {
-    return this._showsLabels;
-  }
-
-  public get sliderSize(): SliderSize {
-    return this._size;
-  }
-
-  public get valueFieldsAreEnabled(): boolean {
-    return this._enableValueFields;
-  }
-
-  public get multiValue(): boolean {
-    return this._multiValue;
   }
 
   public get rangeSliderComponent(): ClrRange {
@@ -107,7 +92,7 @@ export class ClrSlider {
 
   @Input('clrMinValue')
   public set minValue(min: number) {
-    if (!this._enableValueFields) {
+    if (!this.enableValueFields) {
       return;
     }
 
@@ -123,7 +108,7 @@ export class ClrSlider {
 
   @Input('clrMaxValue')
   public set maxValue(max: number) {
-    if (!this._enableValueFields) {
+    if (!this.enableValueFields) {
       return;
     }
 
@@ -140,26 +125,6 @@ export class ClrSlider {
   @Input('clrStep')
   public set step(step: number) {
     this._step = step > 0 ? step : 1;
-  }
-
-  @Input('clrShowsLabels')
-  public set showLabels(showsLabels: boolean) {
-    this._showsLabels = showsLabels;
-  }
-
-  @Input('clrSliderSize')
-  public set size(size: SliderSize) {
-    this._size = size;
-  }
-
-  @Input('clrEnableValueFields')
-  public set enableValueFields(enableValueFields: boolean) {
-    this._enableValueFields = enableValueFields;
-  }
-
-  @Input('clrMultiValue')
-  public set multiValue(multiValue: boolean) {
-    this._multiValue = multiValue;
   }
 
   // ====== Tools ======

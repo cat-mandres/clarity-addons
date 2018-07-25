@@ -5,7 +5,7 @@
  */
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ClrSlider } from '@porscheinformatik/clr-addons';
-import { SliderSize } from '../../../../clr-addons/slider/slidersize.enum';
+import { SliderSize } from '../../../../clr-addons/slider/slider-size.enum';
 
 @Component({
   selector: 'clr-slider-demo',
@@ -30,8 +30,8 @@ export class SliderDemo {
 
   @ViewChild('sliderMisc1') private _sliderMisc1: ClrSlider;
   @ViewChild('sliderMisc1NumberValue') private _sliderMisc1NumberValue: ElementRef;
-  @ViewChild('sliderMisc1NumberLowValue') private _sliderMisc1NumberLowValue: ElementRef;
-  @ViewChild('sliderMisc1NumberHighValue') private _sliderMisc1NumberHighValue: ElementRef;
+  @ViewChild('sliderMisc1LowValue') private _sliderMisc1NumberLowValue: ElementRef;
+  @ViewChild('sliderMisc1HighValue') private _sliderMisc1NumberHighValue: ElementRef;
   @ViewChild('sliderMisc1MaxValue') private _sliderMisc1MaxValue: ElementRef;
   @ViewChild('sliderMisc1MinValue') private _sliderMisc1MinValue: ElementRef;
   @ViewChild('sliderMisc1StepValue') private _sliderMisc1StepValue: ElementRef;
