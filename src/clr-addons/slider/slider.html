@@ -9,9 +9,9 @@
   <div *ngIf="showLabels" class="clr-col-xs">
     <input *ngIf="enableValueFields; else minValueLabel"
            class="value-boundary"
-           title="Minimum"
+           title="{{inverted?'Maximum':'Minimum'}}"
            type="number"
-           name="Minimum"
+           name="{{inverted?'Maximum':'Minimum'}}"
            [(ngModel)]="_minValue"
            [disabled]="!enableValueFields"
            (change)="onMinValueChange($event.target.value)">
@@ -20,27 +20,26 @@
     </ng-template>
   </div>
 
-
   <div class="clr-col-xs clr-offset-1 multiple-range-wrapper multiple-range-wrapper">
     <div [hidden]="!multiValue">
       <clr-range #rangeSliderComponent
                  [clrRangeSliderSize]="size"
                  [clrRangeSliderStep]="_step"
-                 [clrRangeSliderMinValue]="_minValue"
-                 [clrRangeSliderMaxValue]="_maxValue"></clr-range>
+                 [clrRangeSliderMinValue]="minValue"
+                 [clrRangeSliderMaxValue]="maxValue"
+                 (onMinValueChanged)="this._rangeSliderMinValue = $event"></clr-range>
     </div>
 
     <div class="slider-wrapper" [hidden]="multiValue">
-      <input type="range"
+      <input #singleValueComponent type="range"
              [class.slider-size-sm]="size === 'sm'"
              [class.slider-size-md]="size === 'md'"
              [class.slider-size-lg]="size === 'lg'"
              [class.slider-size-xl]="size === 'xl'"
              [(ngModel)]="value"
-             (change)="valueChanged({valueType: 'value', value: $event.target.value})"
              [(step)]="_step"
-             [min]="_minValue"
-             [max]="_maxValue"
+             [min]="minValue"
+             [max]="maxValue"
              class="slider">
     </div>
   </div>
@@ -48,10 +47,10 @@
   <div *ngIf="showLabels" class="clr-col-xs clr-offset-1">
     <input *ngIf="enableValueFields; else maxValueLabel"
            class="value-boundary"
-           title="Maximum"
+           title="{{!inverted?'Maximum':'Minimum'}}"
            type="number"
-           name="Maximum"
-           [(ngModel)]="_maxValue"
+           name="{{!inverted?'Maximum':'Minimum'}}"
+           [(ngModel)]="maxValue"
            [disabled]="!enableValueFields"
            (change)="onMaxValueChange($event.target.value)">
     <ng-template #maxValueLabel>

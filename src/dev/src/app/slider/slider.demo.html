@@ -186,7 +186,7 @@
                 <input #sliderMisc1LowValue
                        type="number"
                        [value]="sliderMisc1.rangeSliderComponent.lowValue"
-                       (change)="sliderMisc1.rangeSliderComponent.lowValue = sliderMisc1LowValue.nativeElement.value"
+                       (change)="sliderMisc1.rangeSliderComponent.lowValue = sliderMisc1LowValue.value"
                        [max]="sliderMisc1.maxValue"
                        [min]="sliderMisc1.minValue">
               </td>
@@ -197,7 +197,7 @@
                 <input #sliderMisc1HighValue
                        type="number"
                        [value]="sliderMisc1.rangeSliderComponent.highValue"
-                       (change)="sliderMisc1.rangeSliderComponent.highValue = sliderMisc1HighValue.nativeElement.value"
+                       (change)="sliderMisc1.rangeSliderComponent.highValue = sliderMisc1HighValue.value"
                        [max]="sliderMisc1.maxValue"
                        [min]="sliderMisc1.minValue">
               </td>
@@ -214,7 +214,7 @@
                 <input #sliderMisc1NumberValue
                        type="number"
                        [value]="sliderMisc1.value"
-                       (change)="sliderMisc1.value = sliderMisc1NumberValue.nativeElement.value"
+                       (change)="sliderMisc1.value = sliderMisc1NumberValue.value"
                        [max]="sliderMisc1.maxValue"
                        [min]="sliderMisc1.minValue">
               </td>
@@ -225,7 +225,7 @@
               <input #sliderMisc1MaxValue
                      type="number"
                      [value]="sliderMisc1.maxValue"
-                     (change)="sliderMisc1.maxValue = sliderMisc1MaxValue.nativeElement.value">
+                     (change)="sliderMisc1.maxValue = sliderMisc1MaxValue.value">
             </td>
           </tr>
           <tr>
@@ -234,7 +234,7 @@
               <input #sliderMisc1MinValue
                      type="number"
                      [value]="sliderMisc1.minValue"
-                     (change)="sliderMisc1.minValue = sliderMisc1MinValue.nativeElement.value">
+                     (change)="sliderMisc1.minValue = sliderMisc1MinValue.value">
             </td>
           </tr>
           <tr>
@@ -243,7 +243,7 @@
               <input #sliderMisc1StepValue
                      type="number"
                      [value]="sliderMisc1.step"
-                     (change)="sliderMisc1.step = sliderMisc1StepValue.nativeElement.value"
+                     (change)="sliderMisc1.step = sliderMisc1StepValue.value"
                      [min]="1"
                      [max]="sliderMisc1.maxValue">
             </td>
@@ -252,7 +252,7 @@
             <th class="left">Range Selection:</th>
             <td class="left">
               <input type="checkbox"
-                     [checked]="sliderMisc1._mutliValue"
+                     [checked]="sliderMisc1.multiValue"
                      (change)="sliderMisc1.multiValue= $event.target.checked">
             </td>
           </tr>

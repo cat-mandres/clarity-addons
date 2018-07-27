@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { SliderSize } from './slider-size.enum';
 import { SliderValueType } from './slider-value-type.enum';
 import { ClrRange } from './range';
@@ -13,9 +13,14 @@ import { ClrRange } from './range';
   selector: 'clr-slider',
   templateUrl: './slider.html',
 })
-export class ClrSlider {
+export class ClrSlider implements OnInit {
+  ngOnInit(): void {
+    this.updateSliderBackground();
+  }
+
   @Output('clrValueChanged') onValueChanged: EventEmitter<any> = new EventEmitter(false);
   @ViewChild('rangeSliderComponent') private _rangeSliderComponent: ClrRange;
+  @ViewChild('singleValueComponent') private _singleValueComponent: ElementRef;
 
   @Input('clrShowsLabels') showLabels: boolean = true;
   @Input('clrEnableValueFields') enableValueFields: boolean = true;
@@ -23,35 +28,20 @@ export class ClrSlider {
   @Input('clrSliderSize') size: SliderSize = SliderSize.medium;
 
   // ====== Events ======
-  valueChanged(value): void {
-    this.onValueChanged.emit(value);
-    switch (value.valueType) {
-      case SliderValueType.value:
-        this._value = value.value;
-        break;
-      case SliderValueType.lowvalue:
-        this._lowValue = +value.value.split(',')[0];
-        break;
-      case SliderValueType.highvalue:
-        this._highValue = +value.value.split(',')[1];
-        break;
-      default:
-        break;
-    }
-  }
-
-  onMinValueChange(newMinValue: number): void {
+  private onMinValueChange(newMinValue: number): void {
     this._minValue = newMinValue;
+
+    this.updateValue();
   }
 
-  onMaxValueChange(newMaxValue: number): void {
+  private onMaxValueChange(newMaxValue: number): void {
     this._maxValue = newMaxValue;
+
+    this.updateValue();
   }
 
   // == Private Fields ==
-  private _highValue = 50;
   private _minValue = 0;
-  private _lowValue = 0;
   private _maxValue = 50;
   private _step = 1;
   private _value = 0;
@@ -62,11 +52,11 @@ export class ClrSlider {
   }
 
   public get minValue(): number {
-    return this._minValue;
+    return this.inverted ? this._maxValue : this._minValue;
   }
 
   public get maxValue(): number {
-    return this._maxValue;
+    return this.inverted ? this._minValue : this._maxValue;
   }
 
   public get step(): number {
@@ -77,16 +67,21 @@ export class ClrSlider {
     return this._rangeSliderComponent;
   }
 
+  public get inverted(): boolean {
+    return this._maxValue < this._minValue;
+  }
+
   // ====== Setter ======
   @Input('clrValue')
   public set value(value: number) {
-    const newvalue = Math.min(Math.max(value, this._minValue), this._maxValue);
+    const newvalue = this.clamp(value, this.minValue, this.maxValue);
 
     if (newvalue === this._value) {
       return;
     }
 
     this._value = newvalue;
+    this.updateSliderBackground();
     this.onValueChanged.emit({ valueType: SliderValueType.value, value: value });
   }
 
@@ -96,14 +91,7 @@ export class ClrSlider {
       return;
     }
 
-    if (min > this._maxValue) {
-      this._minValue = this._maxValue;
-      this._maxValue = min;
-    } else {
-      this._minValue = min;
-    }
-
-    this.updateValue();
+    this.onMinValueChange(min);
   }
 
   @Input('clrMaxValue')
@@ -112,14 +100,7 @@ export class ClrSlider {
       return;
     }
 
-    if (max < this._minValue) {
-      this._maxValue = this._minValue;
-      this._minValue = max;
-    } else {
-      this._maxValue = max;
-    }
-
-    this.updateValue();
+    this.onMaxValueChange(max);
   }
 
   @Input('clrStep')
@@ -130,5 +111,17 @@ export class ClrSlider {
   // ====== Tools ======
   private updateValue(): void {
     this.value = this._value;
+  }
+
+  private clamp(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  private calculateValuePointForBackground(): string {
+    return 100 * ((this.value - this.minValue) / (this.maxValue - this.minValue)) + 1 + '%';
+  }
+
+  private updateSliderBackground() {
+    this._singleValueComponent.nativeElement.style.setProperty('--value', this.calculateValuePointForBackground());
   }
 }
