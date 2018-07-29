@@ -1,0 +1,40 @@
+<!--
+  ~ Copyright (c) 2018 Porsche Informatik. All Rights Reserved.
+  ~ software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of project.
+  -->
+
+<div class="multirangeContainer"
+     [class.slider-size-sm]="_rangeSliderSize === 'sm'"
+     [class.slider-size-md]="_rangeSliderSize === 'md'"
+     [class.slider-size-lg]="_rangeSliderSize === 'lg'"
+     [class.slider-size-xl]="_rangeSliderSize === 'xl'">
+  <div class="slider-wrapper">
+    <input #valueInputElement1 type="range"
+           class="slider"
+           [ngClass]="{'top' : !_defaultArrangement}"
+           [class.slider-size-sm]="_rangeSliderSize === 'sm'"
+           [class.slider-size-md]="_rangeSliderSize === 'md'"
+           [class.slider-size-lg]="_rangeSliderSize === 'lg'"
+           [class.slider-size-xl]="_rangeSliderSize === 'xl'"
+           [(ngModel)]="_lowValue"
+           (change)="lowValueChanged({valueType: 'lowValue', value: $event.target.value})"
+           [(step)]="_rangeSliderStep"
+           [min]="_rangeSliderMinValue"
+           [max]="_rangeSliderMaxValue"
+           (mousemove)="OnMouseMoves($event)">
+    <input #valueInputElement2 type="range"
+           class="slider"
+           [ngClass]="{'top' : _defaultArrangement}"
+           [class.slider-size-sm]="_rangeSliderSize === 'sm'"
+           [class.slider-size-md]="_rangeSliderSize === 'md'"
+           [class.slider-size-lg]="_rangeSliderSize === 'lg'"
+           [class.slider-size-xl]="_rangeSliderSize === 'xl'"
+           [(ngModel)]="_highValue"
+           (change)="highValueChanged({valueType: 'highValue', value: $event.target.value})"
+           [(step)]="_rangeSliderStep"
+           [min]="_rangeSliderMinValue"
+           [max]="_rangeSliderMaxValue"
+           (mousemove)="OnMouseMoves($event)">
+  </div>
+</div>
