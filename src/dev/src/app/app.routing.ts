@@ -14,9 +14,11 @@ import { CollapseExpandSectionDemo } from './collapse-expand-section/collapse-ex
 import { ContentPanelDemo } from './content-panel/content-panel.demo';
 import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
 import { SliderDemo } from './slider/slider.demo';
+import { CardsDemo } from './cards/cards.demo';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
+  { path: 'cards', component: CardsDemo },
   { path: 'view-edit-section', component: ViewEditSectionDemo },
   { path: 'pager', component: PagerDemo },
   { path: 'paged-search-result-list', component: PagedSearchResultListDemo },

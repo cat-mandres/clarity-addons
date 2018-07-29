@@ -8,6 +8,9 @@
 @import './slider/slider';
 @import './slider/range/range';
 
+$clr-card-active-border-color: rgba(0, 148, 210, 1) !default;
+$clr-card-active-border-width: 0.25rem !default;
+
 .content-header {
   border-bottom: $clr-global-borderwidth solid $clr-light-midtone-gray;
   padding: 0.5rem 1rem 0.25rem 1rem;
@@ -16,10 +19,25 @@
 }
 
 .content-header > h2 {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .command-bar {
   flex: 1 0 auto;
   justify-content: flex-end;
+
+  .dropdown-menu {
+    z-index: map-get($clr-layers, sidepanel) - 2;
+  }
+}
+
+// Add class card-active
+.card {
+  &.card-active {
+    border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+
+    &.clickable:hover {
+      border-left: $clr-card-active-border-width solid $clr-card-active-border-color;
+    }
+  }
 }

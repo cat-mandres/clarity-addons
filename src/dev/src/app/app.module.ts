@@ -22,6 +22,7 @@ import { CollapseExpandSectionDemoModule } from './collapse-expand-section/colla
 import { ContentPanelDemoModule } from './content-panel/content-panel.demo.module';
 import { BreadcrumbDemoModule } from './breadcrumb/breadcrumb.demo.module';
 import { SliderDemoModule } from './slider/slider.demo.module';
+import { CardsDemoModule } from './cards/cards.demo.module';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, AppContentContainerComponent],
@@ -39,6 +40,7 @@ import { SliderDemoModule } from './slider/slider.demo.module';
     ContentPanelDemoModule,
     BreadcrumbDemoModule,
     SliderDemoModule,
+    CardsDemoModule,
   ],
   bootstrap: [AppComponent],
 })

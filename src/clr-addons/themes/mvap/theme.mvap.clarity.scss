@@ -97,6 +97,7 @@ $clr-badge-blue-bg-color: $blue-darkest;
 
 // Card
 $clr-card-box-shadow: 0 0;
+$clr-card-active-border-color: $turquoise;
 
 // Checkbox
 $clr-forms-checkbox-background-color: $turquoise; // checked-background-color
@@ -204,7 +205,7 @@ $clr-stack-view-stack-block-expanded-bg-color: $turquoise;
 $clr-stack-view-stack-block-expandable-hover: $clr-global-selection-color;
 
 // Subnav
-$clr-nav-active-box-shadow-color: 0 -3px 0 $turquoise inset;
+$clr-nav-active-box-shadow-color: $turquoise;
 
 // Table
 $clr-table-font-color: $black-light;
