@@ -21,7 +21,6 @@ import { PagedSearchResultListDemoModule } from './paged-search-result-list/page
 import { CollapseExpandSectionDemoModule } from './collapse-expand-section/collapse-expand-section.demo.module';
 import { ContentPanelDemoModule } from './content-panel/content-panel.demo.module';
 import { BreadcrumbDemoModule } from './breadcrumb/breadcrumb.demo.module';
-import { SliderDemoModule } from './slider/slider.demo.module';
 import { CardsDemoModule } from './cards/cards.demo.module';
 
 @NgModule({
@@ -39,7 +38,6 @@ import { CardsDemoModule } from './cards/cards.demo.module';
     CollapseExpandSectionDemoModule,
     ContentPanelDemoModule,
     BreadcrumbDemoModule,
-    SliderDemoModule,
     CardsDemoModule,
   ],
   bootstrap: [AppComponent],

@@ -13,7 +13,6 @@ import { PagedSearchResultListDemo } from './paged-search-result-list/paged-sear
 import { CollapseExpandSectionDemo } from './collapse-expand-section/collapse-expand-section.demo';
 import { ContentPanelDemo } from './content-panel/content-panel.demo';
 import { BreadcrumbDemo } from './breadcrumb/breadcrumb.demo';
-import { SliderDemo } from './slider/slider.demo';
 import { CardsDemo } from './cards/cards.demo';
 
 export const APP_ROUTES: Routes = [
@@ -25,7 +24,6 @@ export const APP_ROUTES: Routes = [
   { path: 'collapse-expand-section', component: CollapseExpandSectionDemo },
   { path: 'content-panel', component: ContentPanelDemo },
   { path: 'breadcrumb', component: BreadcrumbDemo },
-  { path: 'slider', component: SliderDemo },
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
