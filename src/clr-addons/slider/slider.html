@@ -4,33 +4,23 @@
   ~ The full license information can be found in LICENSE in the root directory of project.
   -->
 
-
 <div class="clr-row flex-items-xs-middle">
-  <div *ngIf="showLabels" class="clr-col-xs">
-    <input *ngIf="enableValueFields; else minValueLabel"
-           class="value-boundary"
-           title="{{inverted?'Maximum':'Minimum'}}"
-           type="number"
-           name="{{inverted?'Maximum':'Minimum'}}"
-           [(ngModel)]="_minValue"
-           [disabled]="!enableValueFields"
-           (change)="onMinValueChange($event.target.value)">
-    <ng-template #minValueLabel>
+  <div class="clr-break-row"></div>
+
+  <div *ngIf="showLabels" class="clr-col-xs-2">
       <span class="label">{{_minValue}}</span>
-    </ng-template>
   </div>
 
-  <div class="clr-col-xs clr-offset-1 multiple-range-wrapper multiple-range-wrapper">
-    <div [hidden]="!multiValue">
+  <div class="clr-col-xs-8 range-wrapper">
+    <div [hidden]="!range">
       <clr-range #rangeSliderComponent
+                 id="rangeSliderComponent"
                  [clrRangeSliderSize]="size"
                  [clrRangeSliderStep]="_step"
                  [clrRangeSliderMinValue]="minValue"
-                 [clrRangeSliderMaxValue]="maxValue"
-                 (onMinValueChanged)="this._rangeSliderMinValue = $event"></clr-range>
+                 [clrRangeSliderMaxValue]="maxValue"></clr-range>
     </div>
-
-    <div class="slider-wrapper" [hidden]="multiValue">
+    <div class="slider-wrapper" [hidden]="range">
       <input #singleValueComponent type="range"
              [class.slider-size-sm]="size === 'sm'"
              [class.slider-size-md]="size === 'md'"
@@ -44,17 +34,7 @@
     </div>
   </div>
 
-  <div *ngIf="showLabels" class="clr-col-xs clr-offset-1">
-    <input *ngIf="enableValueFields; else maxValueLabel"
-           class="value-boundary"
-           title="{{!inverted?'Maximum':'Minimum'}}"
-           type="number"
-           name="{{!inverted?'Maximum':'Minimum'}}"
-           [(ngModel)]="maxValue"
-           [disabled]="!enableValueFields"
-           (change)="onMaxValueChange($event.target.value)">
-    <ng-template #maxValueLabel>
+  <div *ngIf="showLabels" class="clr-col-xs-2">
       <span class="label">{{_maxValue}}</span>
-    </ng-template>
   </div>
 </div>

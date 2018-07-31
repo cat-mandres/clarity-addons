@@ -28,18 +28,33 @@
     width: $clr-slider-size-xl;
   }
 
-  .multiple-range-wrapper {
+  .range-wrapper {
     position: relative;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
   }
 
   .slider-wrapper {
     width: auto;
+    position: relative;
+    margin: 0.75rem 0 0.75rem 0;
 
     input[type='range'] {
       display: block;
       -webkit-appearance: none;
       -moz-appearance: none;
       background: transparent;
+    }
+
+    .slider::before {
+      content: attr(aria-valuenow);
+      position: absolute;
+      top: 0.25rem;
+      left: calc(var(--value) * 0.93);
+      width: 1rem;
+      height: 1rem;
+      margin-bottom: 0.25rem;
+      color: $clr-app-font-color-primary;
     }
 
     input[type='range']:focus {

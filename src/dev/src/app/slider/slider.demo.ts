@@ -14,5 +14,5 @@ import { ClrSlider } from '@porscheinformatik/clr-addons';
 })
 export class SliderDemo {
   private _sliderSize = SliderSize;
-  private _showMultiValues = false;
+  private _showRangeValues = false;
 }
