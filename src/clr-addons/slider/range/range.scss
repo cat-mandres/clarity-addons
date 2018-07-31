@@ -6,7 +6,7 @@
 @import '../slider';
 
 @include exports('range.clr-addons') {
-  .multirangeContainer {
+  .rangeContainer {
     display: inline-block !important;
 
     input[type='range'] {

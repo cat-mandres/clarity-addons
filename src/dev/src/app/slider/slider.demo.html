@@ -5,8 +5,76 @@
   -->
 <div>
   <article>
-    <h2>Slider</h2>
+    <h2>Slider/Range</h2>
+    <h5 class="component-summary" id="slider-range-header">
+      Slider are input components used to select a value inside a specific range.
+      <br>
+      You can also decide to select a range instead of a single value by switching from a single value Slider to a Range
+      component.
+    </h5>
+    <div id="design-guidelines">
+      <h3>Slider (Mono Value)</h3>
+      <p>
+        As explained above the slider component is used to select a single value out of a set range of numbers.
+        The user can determine the selected value by sliding the sliders thumb between both extremes (minimum and
+        maximum). The component also consists of two labels which, if wanted, are also able to be hidden.
+      </p>
+      <h3>Range (Range-Selection and Dual-Value)</h3>
+      <p>
+        Compared to Slider components Range components consist of two thumbs instead of one. Those two thumbs are able to both select two values
+        separate each other, but also a range defined by the distance between both range thumbs - the range value is
+        always absolute and therefore will only remain positive.
+      </p>
+    </div>
     <div class="clr-code">
+      <h3 class="examples">Code & Examples</h3>
+      <p>
+        To layout the range of the component simply add the component and set
+        <code class="clr-code">range</code>
+        to true.
+      </p>
+      <p>Following interactions are available:</p>
+      <ul>
+        <li>
+          To hide both extremes (minimum and maximum) as labels add
+          <code class="clr-code">[showLabels]</code>
+          and set it to
+          <code class="clr-code">false</code>.
+        </li>
+        <li>
+          To enable the range component add
+          <code class="clr-code">[showLabels]</code>
+          and set it to
+          <code class="clr-code">true</code>.
+        </li>
+        <li>
+          To set the size of either Range or Slider add
+          <code class="clr-code">[size]</code>
+          and choose between
+          <code class="clr-code">small('sm')</code>
+          ,
+          <code class="clr-code">medium('md')</code>
+          ,
+          <code class="clr-code">large('lg')</code>
+          or
+          <code class="clr-code">xlarge('xl')</code>.
+        </li>
+        <li>
+          To react to value changes, bind to event
+          <code class="clr-code">(onValueChanged)</code>.
+        </li>
+        <li>
+          To react to low-Value changes (lower range-value), bind to event
+          <code class="clr-code">(onLowValueChanged)</code>.
+        </li>
+        <li>
+          To react to high-Value changes (higher range-value), bind to event
+          <code class="clr-code">(onHighValueChanged)</code>.
+        </li>
+      </ul>
+
+      <hr>
+
       <p>Slider components come in all different kind of sizes. The
         <code class="clr-code">enum</code>
         <code class="clr-code">SliderSize</code>
@@ -20,296 +88,245 @@
         <code class="clr-code">xlarge('xl')</code>
         . Also Range components come in the same sizes.
       </p>
-    </div>
-    <form>
-      <section class="form-block">
-        <label>Different Sizes:</label>
-        <div class="clr-form-control clr-row">
-          <div class="toggle-switch">
-            <input type="checkbox"
-                   id="singleOrRangeToggle"
-                   [checked]="_showMultiValues"
-                   (change)="_showMultiValues= $event.target.checked">
-            <label for="singleOrRangeToggle">Range-Selection</label>
+      <form>
+        <section class="form-block">
+          <label>Different Sizes:</label>
+          <div class="clr-form-control">
+            <div class="toggle-switch">
+              <input type="checkbox"
+                     id="singleOrRangeToggle"
+                     [checked]="_showRangeValues"
+                     (change)="_showRangeValues= $event.target.checked">
+              <label for="singleOrRangeToggle">Range-Selection</label>
+            </div>
+          </div>
+          <div class="clr-row clr-align-items-center">
+            <div class="clr-col-2">
+              Small (<code class="clr-code">{{horiSliderSize1.size}}</code>)
+            </div>
+            <div class="clr-col">
+              <clr-slider #horiSliderSize1
+                          [clrSliderSize]="_sliderSize.small"
+                          [clrShowsLabels]="false"
+                          [clrRangeValue]="_showRangeValues">
+              </clr-slider>
+            </div>
+
+            <div class="clr-break-row"></div>
+
+            <div class="clr-col-2">
+              Medium (<code class="clr-code">{{horiSliderSize2.size}}</code>)
+            </div>
+            <div class="clr-col">
+              <clr-slider #horiSliderSize2
+                          [clrSliderSize]="_sliderSize.medium"
+                          [clrShowsLabels]="false"
+                          [clrRangeValue]="_showRangeValues">
+              </clr-slider>
+            </div>
+
+            <div class="clr-break-row"></div>
+
+            <div class="clr-col-2">
+              Large (<code class="clr-code">{{horiSliderSize3.size}}</code>)
+            </div>
+            <div class="clr-col">
+              <clr-slider #horiSliderSize3
+                          [clrSliderSize]="_sliderSize.large"
+                          [clrShowsLabels]="false"
+                          [clrRangeValue]="_showRangeValues">
+              </clr-slider>
+            </div>
+
+            <div class="clr-break-row"></div>
+
+            <div class="clr-col-2">
+              X-Large (<code class="clr-code">{{horiSliderSize4.size}}</code>)
+            </div>
+            <div class="clr-col">
+              <clr-slider #horiSliderSize4
+                          [clrSliderSize]="_sliderSize.xlarge"
+                          [clrShowsLabels]="false"
+                          [clrRangeValue]="_showRangeValues">
+              </clr-slider>
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <hr>
+
+      <div>
+        <h4>Show and Hide value input fields:</h4>
+
+        <div class="clr-row">
+          <div class="clr-col-sm-3">
+            <span class="left">Show Fields</span>
+          </div>
+          <div class="clr-col-sm-2 clr-offset-sm-6">
+            <span>Value</span>
+          </div>
+
+          <div class="clr-break-row"></div>
+
+          <div class="clr-col-sm-1">
+            <div class="toggle-switch">
+              <input type="checkbox"
+                     id="showfieldtoggle"
+                     [checked]="sliderShowsLabels1.showLabels"
+                     (change)="sliderShowsLabels1.showLabels= $event.target.checked">
+              <label for="showfieldtoggle"></label>
+            </div>
+          </div>
+          <div class="clr-col-sm-8">
+            <clr-slider #sliderShowsLabels1 [clrShowsLabels]="false" [clrSliderSize]="_sliderSize.large"></clr-slider>
+          </div>
+          <div class="clr-col-sm-2">
+            <span>{{sliderShowsLabels1.value}}</span>
           </div>
         </div>
-        <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
+      </div>
+
+      <hr>
+
+      <div>
+        <h5 class="component-summary">Range Selection (mutlitple values):</h5>
+        <div class="clr-row">
+          <div class="clr-col-sm-3">
+            <span class="left">Range-Selection</span>
+          </div>
+          <div class="clr-col-sm-2 clr-offset-sm-6">
+            <span>Value</span>
+          </div>
+
+          <div class="clr-break-row"></div>
+
+          <div class="clr-col-sm-1">
+            <div class="toggle-switch">
+              <input type="checkbox" id="rangeselectiontoggle1"
+                     [checked]="sliderRangeSelection1.range"
+                     (change)="sliderRangeSelection1.range= $event.target.checked">
+              <label for="rangeselectiontoggle1"></label>
+            </div>
+          </div>
+          <div class="clr-col-sm-8">
+            <clr-slider #sliderRangeSelection1
+                        [clrRangeValue]="true"
+                        [clrSliderSize]="_sliderSize.large">
+            </clr-slider>
+          </div>
+          <div class="clr-col-sm-2">
+          <span *ngIf="sliderRangeSelection1.range; else singleValueSliderOutput">
+            {{sliderRangeSelection1.rangeSliderComponent.lowValue}}, {{sliderRangeSelection1.rangeSliderComponent.highValue}}
+          </span>
+            <ng-template #singleValueSliderOutput>
+              {{sliderRangeSelection1.value}}
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div>
+        <h5 class="component-summary">Miscellaneous features:</h5>
+        <br>
+        <clr-slider #sliderMisc1
+                    [clrShowsLabels]="false"
+                    [clrSliderSize]="_sliderSize.xlarge">
+        ></clr-slider>
+        <div class="col-xs-12 col-md-12 col-lg-6 col-xl-4">
           <table class="table">
+            <thead>
+            <tr>
+              <th></th>
+              <th>Settings</th>
+            </tr>
+            </thead>
             <tbody>
-            <tr>
-              <th class="left">Small (<code>{{horiSliderSize1.size}}</code>)</th>
+            <tr *ngIf="sliderMisc1.range">
+              <th class="left">Lower Value:</th>
               <td class="left">
-                <clr-slider #horiSliderSize1
-                            [clrSliderSize]="_sliderSize.small"
-                            [clrShowsLabels]="false"
-                            [clrMultiValue]="_showMultiValues">
-                </clr-slider>
+                <input #sliderMisc1LowValue
+                       type="number"
+                       [value]="sliderMisc1.rangeSliderComponent.lowValue"
+                       (change)="sliderMisc1.rangeSliderComponent.lowValue = +sliderMisc1LowValue.value"
+                       [max]="sliderMisc1.maxValue"
+                       [min]="sliderMisc1.minValue">
               </td>
             </tr>
-            <tr>
-              <th class="left">Medium (<code>{{horiSliderSize2.size}}</code>)</th>
-              <td>
-                <clr-slider #horiSliderSize2
-                            [clrSliderSize]="_sliderSize.medium"
-                            [clrShowsLabels]="false"
-                            [clrMultiValue]="_showMultiValues">
-                </clr-slider>
-              </td>
-            </tr>
-            <tr>
-              <th class="left">Large (<code>{{horiSliderSize3.size}}</code>)</th>
+            <tr *ngIf="sliderMisc1.range">
+              <th class="left">Higher Value:</th>
               <td class="left">
-                <clr-slider #horiSliderSize3
-                            [clrSliderSize]="_sliderSize.large"
-                            [clrShowsLabels]="false"
-                            [clrMultiValue]="_showMultiValues">
-                </clr-slider>
+                <input #sliderMisc1HighValue
+                       type="number"
+                       [value]="sliderMisc1.rangeSliderComponent.highValue"
+                       (change)="sliderMisc1.rangeSliderComponent.highValue = +sliderMisc1HighValue.value"
+                       [max]="sliderMisc1.maxValue"
+                       [min]="sliderMisc1.minValue">
+              </td>
+            </tr>
+            <tr *ngIf="sliderMisc1.range">
+              <th class="left">Range Value:</th>
+              <td class="left">
+                <span class="label">{{sliderMisc1.rangeSliderComponent.range}}</span>
+              </td>
+            </tr>
+            <tr *ngIf="!sliderMisc1.range">
+              <th class="left">Value:</th>
+              <td class="left">
+                <input #sliderMisc1NumberValue
+                       type="number"
+                       [value]="sliderMisc1.value"
+                       (change)="sliderMisc1.value = sliderMisc1NumberValue.value"
+                       [max]="sliderMisc1.maxValue"
+                       [min]="sliderMisc1.minValue">
               </td>
             </tr>
             <tr>
-              <th class="left">X-Large (<code>{{horiSliderSize4.size}}</code>)</th>
-              <td>
-                <clr-slider #horiSliderSize4
-                            [clrSliderSize]="_sliderSize.xlarge"
-                            [clrShowsLabels]="false"
-                            [clrMultiValue]="_showMultiValues">
-                </clr-slider>
+              <th class="left">Maximum:</th>
+              <td class="left">
+                <input #sliderMisc1MaxValue
+                       type="number"
+                       [value]="sliderMisc1.maxValue"
+                       (change)="sliderMisc1.maxValue = sliderMisc1MaxValue.value">
+              </td>
+            </tr>
+            <tr>
+              <th class="left">Minimum:</th>
+              <td class="left">
+                <input #sliderMisc1MinValue
+                       type="number"
+                       [value]="sliderMisc1.minValue"
+                       (change)="sliderMisc1.minValue = sliderMisc1MinValue.value">
+              </td>
+            </tr>
+            <tr>
+              <th class="left">Step:</th>
+              <td class="left">
+                <input #sliderMisc1StepValue
+                       type="number"
+                       [value]="sliderMisc1.step"
+                       (change)="sliderMisc1.step = sliderMisc1StepValue.value"
+                       [min]="1"
+                       [max]="sliderMisc1.maxValue">
+              </td>
+            </tr>
+            <tr>
+              <th class="left">Range Selection:</th>
+              <td class="left">
+                <div class="toggle-switch">
+                  <input type="checkbox"
+                         id="rangeselectiontoggle2"
+                         [checked]="sliderMisc1.range"
+                         (change)="sliderMisc1.range= $event.target.checked">
+                  <label for="rangeselectiontoggle2"></label>
+                </div>
               </td>
             </tr>
             </tbody>
           </table>
         </div>
-      </section>
-    </form>
-
-    <hr>
-
-    <div>
-      <div class="clr-code">
-        <p>Slider components are also composed of two
-          <code class="clr-code">inputs</code>
-          or
-          <code class="clr-code">labels</code>
-          depending on whether
-          <code class="clr-code">enableValueFields</code>
-          is set on
-          <code class="clr-code">true</code>
-          or
-          <code class="clr-code">false</code>
-          .
-        </p>
-      </div>
-      <form>
-        <section class="form-block">
-          <label>En- Disable value input fields:</label>
-          <div class="clr-row">
-            <div class="clr-col-sm-3">
-              <span class="left">Enable Fields</span>
-            </div>
-            <div class="clr-col-sm-2 clr-offset-sm-6">
-              <span>Value</span>
-            </div>
-
-            <div class="clr-break-row"></div>
-
-            <div class="clr-col-sm-1">
-              <div class="toggle-switch">
-                <input type="checkbox"
-                       id="inputfieldtoggle"
-                       [checked]="sliderValueFields1.enableValueFields"
-                       (change)="sliderValueFields1.enableValueFields= $event.target.checked">
-                <label for="inputfieldtoggle"></label>
-              </div>
-            </div>
-            <div class="clr-col-sm-8">
-              <clr-slider #sliderValueFields1
-                          [clrEnableValueFields]="false"
-                          [clrSliderSize]="_sliderSize.large">
-              </clr-slider>
-            </div>
-            <div class="clr-col-sm-2">
-              <span>{{sliderValueFields1.value}}</span>
-            </div>
-          </div>
-        </section>
-      </form>
-    </div>
-
-    <hr>
-
-    <div>
-      <h4>Show and Hide value input fields:</h4>
-
-      <div class="clr-row">
-        <div class="clr-col-sm-3">
-          <span class="left">Show Fields</span>
-        </div>
-        <div class="clr-col-sm-2 clr-offset-sm-6">
-          <span>Value</span>
-        </div>
-
-        <div class="clr-break-row"></div>
-
-        <div class="clr-col-sm-1">
-          <div class="toggle-switch">
-            <input type="checkbox"
-                   id="showfieldtoggle"
-                   [checked]="sliderShowsLabels1.showLabels"
-                   (change)="sliderShowsLabels1.showLabels= $event.target.checked">
-            <label for="showfieldtoggle"></label>
-          </div>
-        </div>
-        <div class="clr-col-sm-8">
-          <clr-slider #sliderShowsLabels1 [clrShowsLabels]="false" [clrSliderSize]="_sliderSize.large"></clr-slider>
-        </div>
-        <div class="clr-col-sm-2">
-          <span>{{sliderShowsLabels1.value}}</span>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div>
-      <h5 class="component-summary">Range Selection (mutlitple values):</h5>
-      <div class="clr-row">
-        <div class="clr-col-sm-3">
-          <span class="left">Range-Selection</span>
-        </div>
-        <div class="clr-col-sm-2 clr-offset-sm-6">
-          <span>Value</span>
-        </div>
-
-        <div class="clr-break-row"></div>
-
-        <div class="clr-col-sm-1">
-          <div class="toggle-switch">
-            <input type="checkbox" id="rangeselectiontoggle1"
-                   [checked]="sliderRangeSelection1.multiValue"
-                   (change)="sliderRangeSelection1.multiValue= $event.target.checked">
-            <label for="rangeselectiontoggle1"></label>
-          </div>
-        </div>
-        <div class="clr-col-sm-8">
-          <clr-slider #sliderRangeSelection1
-                      [clrMultiValue]="true"
-                      [clrSliderSize]="_sliderSize.large"
-                      [clrEnableValueFields]="false">
-          </clr-slider>
-        </div>
-        <div class="clr-col-sm-2">
-          <span *ngIf="sliderRangeSelection1.multiValue; else singleValueSliderOutput">
-            {{sliderRangeSelection1.rangeSliderComponent.lowValue}}, {{sliderRangeSelection1.rangeSliderComponent.highValue}}
-          </span>
-          <ng-template #singleValueSliderOutput>
-            {{sliderRangeSelection1.value}}
-          </ng-template>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div>
-      <h5 class="component-summary">Miscellaneous features:</h5>
-      <br>
-      <div class="horizontal-center">
-        <clr-slider #sliderMisc1
-                    [clrShowsLabels]="false"
-                    [clrSliderSize]="_sliderSize.xlarge"
-        ></clr-slider>
-      </div>
-      <div class="col-xs-12 col-md-12 col-lg-6 col-xl-4">
-        <table class="table">
-          <thead>
-          <tr>
-            <th></th>
-            <th>Settings</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngIf="sliderMisc1.multiValue">
-            <th class="left">Lower Value:</th>
-            <td class="left">
-              <input #sliderMisc1LowValue
-                     type="number"
-                     [value]="sliderMisc1.rangeSliderComponent.lowValue"
-                     (change)="sliderMisc1.rangeSliderComponent.lowValue = +sliderMisc1LowValue.value"
-                     [max]="sliderMisc1.maxValue"
-                     [min]="sliderMisc1.minValue">
-            </td>
-          </tr>
-          <tr *ngIf="sliderMisc1.multiValue">
-            <th class="left">Higher Value:</th>
-            <td class="left">
-              <input #sliderMisc1HighValue
-                     type="number"
-                     [value]="sliderMisc1.rangeSliderComponent.highValue"
-                     (change)="sliderMisc1.rangeSliderComponent.highValue = +sliderMisc1HighValue.value"
-                     [max]="sliderMisc1.maxValue"
-                     [min]="sliderMisc1.minValue">
-            </td>
-          </tr>
-          <tr *ngIf="sliderMisc1.multiValue">
-            <th class="left">Range Value:</th>
-            <td class="left">
-              <span class="label">{{sliderMisc1.rangeSliderComponent.range}}</span>
-            </td>
-          </tr>
-          <tr *ngIf="!sliderMisc1.multiValue">
-            <th class="left">Value:</th>
-            <td class="left">
-              <input #sliderMisc1NumberValue
-                     type="number"
-                     [value]="sliderMisc1.value"
-                     (change)="sliderMisc1.value = sliderMisc1NumberValue.value"
-                     [max]="sliderMisc1.maxValue"
-                     [min]="sliderMisc1.minValue">
-            </td>
-          </tr>
-          <tr>
-            <th class="left">Maximum:</th>
-            <td class="left">
-              <input #sliderMisc1MaxValue
-                     type="number"
-                     [value]="sliderMisc1.maxValue"
-                     (change)="sliderMisc1.maxValue = sliderMisc1MaxValue.value">
-            </td>
-          </tr>
-          <tr>
-            <th class="left">Minimum:</th>
-            <td class="left">
-              <input #sliderMisc1MinValue
-                     type="number"
-                     [value]="sliderMisc1.minValue"
-                     (change)="sliderMisc1.minValue = sliderMisc1MinValue.value">
-            </td>
-          </tr>
-          <tr>
-            <th class="left">Step:</th>
-            <td class="left">
-              <input #sliderMisc1StepValue
-                     type="number"
-                     [value]="sliderMisc1.step"
-                     (change)="sliderMisc1.step = sliderMisc1StepValue.value"
-                     [min]="1"
-                     [max]="sliderMisc1.maxValue">
-            </td>
-          </tr>
-          <tr>
-            <th class="left">Range Selection:</th>
-            <td class="left">
-              <div class="toggle-switch">
-                <input type="checkbox"
-                       id="rangeselectiontoggle2"
-                       [checked]="sliderMisc1.multiValue"
-                       (change)="sliderMisc1.multiValue= $event.target.checked">
-                <label for="rangeselectiontoggle2"></label>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </article>
